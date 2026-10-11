@@ -1,4 +1,4 @@
-# 🚀 Java & OOP Course Notes & Practices
+# 🚀 Java & OOP Course Notes & Practices 
 
 This repository contains Java code examples, OOP implementations, and laboratory exercises developed during my university coursework and personal study sessions.
 

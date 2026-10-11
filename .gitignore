@@ -1,0 +1,16 @@
+# Bytecode / Derleme çıktıları
+*.class
+*.jar
+*.war
+
+# IDE ve ortam dosyaları
+.idea/
+*.iml
+.vscode/
+bin/
+out/
+target/
+
+# İşletim sistemi kalıntıları
+.DS_Store
+Thumbs.db

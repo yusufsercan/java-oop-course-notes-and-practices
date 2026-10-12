@@ -1,0 +1,203 @@
+================================================================================
+
+JAVA DERLEME VE ÇALIŞTIRMA MEKANİZMASI: TERMINAL VS IDE / BUTON FARKI
+
+Ders: Nesne Yönelimli Programlama (OOP) - Hafta 01
+
+================================================================================
+
+
+
+1. TEMEL SORU: 
+
+   VS Code "Run" Butonu (veya Ctrl+Alt+N) ile Terminal Komutlarının Farkı Nedir?
+
+--------------------------------------------------------------------------------
+
+VS Code'daki "Run" butonuna basmak veya Code Runner gibi eklentilerin kısayollarını 
+
+kullanmak (Ctrl+Alt+N), arka planda çalışan süreçleri senden gizleyen birer 
+
+"kolaylaştırıcıdır" (soyutlamadır).
+
+
+
+- Buton / Kısayol: 
+
+  Arka planda senin yerine sabit parametreli genel komutlar koşturur. Çoğu zaman 
+
+  derlenen .class dosyasını kaynak kodun (src) yanına fırlatır, dizin düzenini 
+
+  bozar veya geçici yollarla anı kurtarır.
+
+  
+
+- Terminal Komutları (javac ve java): 
+
+  Mimariyi doğrudan kontrol etmeni sağlar. Kaynak kod ile derlenmiş dosyayı 
+
+  birbirinden kesin çizgilerle ayırır (src vs bin). Sınavlarda, Linux sunucularda, 
+
+  Docker konteynerlerinde ve CI/CD süreçlerinde grafik arayüz (GUI) bulunmadığı için 
+
+  mühendisin bilmesi gereken standart yöntem budur.
+
+
+
+
+
+================================================================================
+
+2. DERLEME KOMUTU: javac -d bin src/Merhaba.java
+
+================================================================================
+
+Bu komut, Java'nın ilk aşaması olan "Derleme" (Compilation) işlemidir.
+
+
+
+Komut Parçalarının Anlamı:
+
+* javac             : "Java Compiler" (Java Derleyicisi). C'deki gcc/g++ gibidir. 
+
+                      Ham insan kodunu (.java) alır, platformdan bağımsız ara koda 
+
+                      (Bytecode - .class) dönüştürür.
+
+* -d bin            : "Destination Directory" (Hedef Dizin). Derleme sonucunda 
+
+                      oluşacak olan .class dosyasının nereye yazılacağını belirtir. 
+
+                      Bu parametre verilmezse .class dosyası src içine düşer ve 
+
+                      projeyi kirletir.
+
+* src/Merhaba.java  : Derlenecek kaynak dosyanın fiziksel disk yoludur.
+
+
+
+
+
+================================================================================
+
+3. ÇALIŞTIRMA KOMUTU: java -cp bin Merhaba
+
+================================================================================
+
+Bu komut, Java'nın ikinci aşaması olan "Yorumlama ve Çalıştırma" (Runtime) adımıdır.
+
+
+
+Komut Parçalarının Anlamı:
+
+* java              : JVM'i (Java Virtual Machine / Java Sanal Makinesi) ayağa kaldırır.
+
+* -cp bin           : "Classpath" (Sınıf Arama Yolu). JVM'e şu talimatı verir: 
+
+                      "Çalıştıracağın sınıfa ait .class dosyasını diskteki 'bin' 
+
+                      klasörünün içinde ara."
+
+* Merhaba           : Çalıştırılacak sınıfın (class) YALIN ADIDIR.
+
+
+
+KRİTİK SINAV TUZAĞI:
+
+- Asla "java -cp bin Merhaba.class" YAZILMAZ!
+
+- Asla "java -cp bin src/Merhaba" YAZILMAZ!
+
+JVM sınıfın adını bekler, dosya uzantısını değil. Uzantı yazarsan JVM "Merhaba.class" 
+
+isimli bir sınıf arar ve "ClassNotFoundException" hatası patlatır.
+
+
+
+
+
+================================================================================
+
+4. İKİ AŞAMALI JAVA ÇALIŞMA ZİNCİRİ (C++ İLE KIYASLAMA)
+
+================================================================================
+
+- C / C++ Zinciri:
+
+  Kaynak Kod (.cpp) ---> [gcc/g++] ---> Makine Kodu (.exe / binary)
+
+  * Doğrudan işletim sistemine ve işlemciye bağımlıdır.
+
+
+
+- Java Zinciri:
+
+  1. Aşama: Merhaba.java ---> [javac -d bin] ---> Merhaba.class (Bytecode)
+
+  2. Aşama: Merhaba.class ---> [JVM (java -cp bin)] ---> Makine Kodu / Ekran Çıktısı
+
+  * "Bir kere yaz, her yerde çalıştır" (WORA - Write Once, Run Anywhere) felsefesi 
+
+    buradan gelir. Bytecode işletim sistemine değil, JVM'e özeldir.
+
+
+
+
+
+================================================================================
+
+5. PROJE DİZİN STANDARDI (NEDEN src VE bin AYRIMI?)
+
+================================================================================
+
+Hocanın ders föyünde belirttiği gibi profesyonel mühendislik standartlarında:
+
+
+
+Proje_Klasoru/
+
+├── src/        --> Kaynak dosyalar (.java) [Git'e GİDER]
+
+└── bin/        --> Derlenmiş sınıflar (.class) [Git'e GİTMEZ / .gitignore]
+
+
+
+- src (Source) : Yalnızca senin yazdığın temiz kodlar yer alır.
+
+- bin (Binary) : Makinenin ürettiği ara kodlar yer alır.
+
+Bu ayrım sayesinde Git depon gereksiz derleme çıktılarıyla şişmez, sadece kaynak 
+
+kodların sürüm kontrolü yapılır.
+
+
+
+
+
+================================================================================
+
+6. SIK KARŞILAŞILAN HATA MESAJLARI VE ANLAMLARI
+
+================================================================================
+
+1. "error: file not found: src/Merhaba.java"
+
+   Sebep: Terminalde bulunduğun klasörde belirtilen yol yok. Komutun çalıştığı 
+
+   dizin ile dosyanın konumu uyuşmuyor.
+
+
+
+2. "Error: Could not find or load main class Merhaba" (ClassNotFoundException)
+
+   Sebep: JVM belirtilen sınıfa ulaşamadı. Ya -cp parametresi verilmedi ya da 
+
+   yanlış klasör gösterildi.
+
+
+
+3. "javac is not recognized..."
+
+   Sebep: Sistemde JDK kurulu değil ya da PATH ortam değişkenlerine eklenmemiş.
+
+================================================================================

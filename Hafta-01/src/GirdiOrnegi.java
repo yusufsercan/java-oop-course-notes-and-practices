@@ -15,7 +15,7 @@ public class GirdiOrnegi
         int yas = 2026 - yil; // kullanicinin yasini hesapliyoruz
         System.out.printf("Merhaba %s, bu yil %d yasindasiniz.%n", ad, yas); // printf() metodu ile ekrana formatli bir sekilde yazdiriyoruz
 
-        tarayici.close(); // Scanner nesnesini kapatiyoruz, bu iyi bir uygulamadir
+        tarayici.close(); // Scanner nesnesini kapatiyoruz.
     
     }
 }

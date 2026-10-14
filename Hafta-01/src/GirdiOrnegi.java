@@ -19,7 +19,7 @@ public class GirdiOrnegi
     
     }
 }
-
+ 
 // bu kodda Scanner sinifi kullanilarak kullanicidan veri alinir ve bu verilerle bir mesaj olusturulur. Scanner sinifi java.util paketinde bulunur ve kullanicidan veri almak icin kullanilir.
 // Scanner taryici = new Scanner(System.in); bunu 1 kere yazmak yeterlidir, 
 // Scanner sinifindan bir nesne olusturulur ve System.in ile klavyeden veri alacagimizi belirtiyoruz. Scanner sinifinin nextLine() metodu ile kullanicidan bir satirlik veri alinir,

@@ -105,4 +105,20 @@ Java'da: Diziler sıradan bir işaretçi değil, Öbek'te (Heap) yaşayan birinc
  * 4. Paralel Dizi Gezme: Aynı anda iki farklı diziyi (örn. vize ve final dizilerini) 
  *    ortak bir indisle eşzamanlı okumak mümkün değildir.
 
+
+
+Olmayan Bir İndise (notlar[8]) Erişilirse Ne Olur?
+ * 
+ * - C Dilinde (Sınır Kontrolü YOK):
+ *   Dizinin hemen bitişiğindeki bellek hücresine erişilir.
+ *   Okuma yapılırsa hafızada kalan anlamsız "çöp/rastgele değer" okunur.
+ *   Yazma yapılırsa komşu değişkenler ezilir (Buffer Overflow) veya 
+ *   yasaklı bellek erişiminden dolayı 'Segmentation Fault' ile program çöker.
+ * 
+ * - Java'da (Katı Sınır Kontrolü VAR):
+ *   JVM her erişimde indisi dizinin boyutuyla kıyaslar. Sınır aşıldığı an
+ *   belleğe dokunulmasına izin vermez ve derhal 
+ *   'ArrayIndexOutOfBoundsException' hatası fırlatarak işlemi durdurur.
+
+
 */

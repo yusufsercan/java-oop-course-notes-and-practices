@@ -8,8 +8,16 @@ This repository contains Java code examples, OOP implementations, and laboratory
 
 ## 📁 Repository Structure
 
-* **`Hafta-01`** : JVM Architecture, Syntax Bridges from C, Classes & Objects (`src/` & `bin/`)
+* `Hafta-01` : **Foundations & JVM Architecture**
+  * Compilation & execution workflow (`javac`, `java`), `src/` and `bin/` structure.
+  * Structural transition from C to Java: reference mechanics, pointers vs. references, `null` safety.
+  * Paradigms: Procedural approach vs. Class & Object abstractions.
 
+* `Hafta-02` : **Encapsulation & Object Lifecycle**
+  * Data hiding and encapsulation (`private` fields, read-only getters, guarded setters).
+  * Constructor design: Full, short, and copy constructors with constructor chaining (`this(...)`).
+  * JVM memory model: Zero-initialization phase, Heap allocation vs. Stack references.
+  * Object collections: Reference arrays (`Ogrenci[]`), enhanced `for-each` traversal, and formatted representation (`toString()`).
 ---
 
 ## 💻 Development Environment

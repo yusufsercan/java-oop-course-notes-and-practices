@@ -164,27 +164,4 @@ this.ad = ad;     | Evet (Çözülmüş)   | Evet           | Tam Standart (Doğ
 ================================================================================
 
 
-    1. this.alan = parametre; (Alan Ataması)
-
-    Ne yapıyor? Parametre ile sınıf alanının adı çakıştığında (gölgeleme olduğunda), nesnenin kendi tapulu alanını belirtir.   
-    Ne zaman zorunlu? Az önce yaptığımız gibi; parametreye ad, alana da ad dediysen zorunludur. 
-
-
-    2. this.metot(); (Aynı Sınıfın Metodunu Çağırmak)
-
-    Ne yapıyor? Sınıfın içindeki bir metodun içindeyken, yine aynı sınıftaki başka bir metodu çağırır.
-    Gerekli mi? Aslında başına this. koymasan da Java anlar. Ama bazı yazılımcılar kod okurken "Bu metot dışarıdan bir kütüphaneden mi geldi, yoksa bizim sınıfın kendi metodu mu?" diye tereddüt etmemek için alışkanlıktan this.ortalamaHesapla(); diye yazar. Okunabilirlik içindir
-
-
-    3. return this; (Zincirleme Çağrı / Fluent API) $\rightarrow$
-
-
-
-
-
-
-
-
-
-
 */

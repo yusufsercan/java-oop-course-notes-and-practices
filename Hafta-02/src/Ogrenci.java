@@ -5,72 +5,83 @@
  * Yapici metot (constructor), nesnenin GECERLI BIR DURUMDA dogmasini
  * garanti eder. Alanlar private oldugu icin disaridan bozulamaz.
  */
-public class Ogrenci 
+public class Ogrenci {
 
-{
+    // --- Ozellikler: artik private ---
     private String ad;
     private String soyad;
     private int numara;
     private double vizeNotu;
     private double finalNotu;
 
-    
-    private static double notDuzelt(double not)
-    {
-        if(not<0)
-        {
-            return 0.0;
+    /**
+     * Tam yapici: tum bilgileri alir ve dogrular.
+     * Nesne olusturulur olusturulmaz gecerli bir duruma sahip olur.
+     */
+    public Ogrenci(String ad, String soyad, int numara,
+                   double vizeNotu, double finalNotu) {
+        this.ad = ad;
+        this.soyad = soyad;
+        this.numara = numara;
+        this.vizeNotu = notuDuzelt(vizeNotu);
+        this.finalNotu = notuDuzelt(finalNotu);
+    }
 
+    /**
+     * Kisa yapici: notlar henuz girilmemis ogrenciler icin.
+     * this(...) ile tam yapiciyi cagirir; kod tekrari olmaz.
+     */
+    public Ogrenci(String ad, String soyad, int numara) {
+        this(ad, soyad, numara, 0.0, 0.0);
+    }
+
+    /**
+     * Kopya yapici: var olan bir ogrencinin bagimsiz kopyasini uretir.
+     */
+    public Ogrenci(Ogrenci kaynak) {
+        this(kaynak.ad, kaynak.soyad, kaynak.numara,
+             kaynak.vizeNotu, kaynak.finalNotu);
+    }
+
+    /** Not 0-100 araliginda degilse sinira cekilir. */
+    private static double notuDuzelt(double not) {
+        if (not < 0) {
+            return 0.0;
         }
-        else if(not>100)
-        {
+        if (not > 100) {
             return 100.0;
         }
-        else 
-        {
-            return not;
-        }
-
-    }
-    public Ogrenci(String ad, String soyad, int numara, double vizeNotu, double finalNotu) // yapıcı  metot
-    {   
-        this.ad=ad;
-        this.soyad=soyad;
-        this.numara=numara;
-        this.vizeNotu=notDuzelt(vizeNotu);// notDuzel ile kontorl ediyoruz yukarıdaki if ler çalışıyor.
-        this.finalNotu=notDuzelt(finalNotu);
+        return not;
     }
 
-    public Ogrenci(String ad, String soyad, int numara)
-    {
-        this(ad,soyad,numara,0.0,0.0);  
+    // --- Davranislar ---
+
+    public double ortalamaHesapla() {
+        return vizeNotu * 0.4 + finalNotu * 0.6;
     }
 
-    public Ogrenci(Ogrenci kaynak)
-    {
-        this(kaynak.ad, kaynak.soyad,kaynak.numara,kaynak.vizeNotu,kaynak.finalNotu);
+    public boolean gectiMi() {
+        return ortalamaHesapla() >= 50.0;
     }
-    public double ortalamaHesapla()
-    {
-        return vizeNotu*0.4+finalNotu*0.5;
-    }
-    public boolean gectiMi()
-    {
-        return ortalamaHesapla()>=50.0;
-    }
-    public String tamAd()
-    {
+
+    public String tamAd() {
         return ad + " " + soyad;
     }
-    public int getNumara()
-    {
+
+    public int getNumara() {
         return numara;
     }
-    public void notlariGuncelle(double vize, double bitirme)
-    {
-        this.vizeNotu= notDuzelt(vize);
-        this.finalNotu=notDuzelt(bitirme);
+
+    public void notlariGuncelle(double vize, double bitirme) {
+        this.vizeNotu = notuDuzelt(vize);
+        this.finalNotu = notuDuzelt(bitirme);
     }
+
+    /**
+     * Nesnenin metin gosterimi. System.out.println(nesne) cagrildiginda
+     * Java bu metodu otomatik olarak calistirir.
+     */
+
 
     @Override // : Derleyiciye bir nottur: "Haberin olsun, Java'nın varsayılan  toString() metodunun yerine kendi yazdığımı koyuyorum." Yazım hatası yaparsan derleyici seni hemen uyarır.
     public String toString()

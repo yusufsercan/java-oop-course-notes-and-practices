@@ -147,20 +147,20 @@ Yapıcı bir sınıf değildir; bir nesne 'new' ile belleğe çıkarken çalış
 
 C++ Kavramı           | Java Karşılığı     | Sınıftaki Yeri / Örneği
 ----------------------|--------------------|---------------------------------------
-Class                 | Class              | public class Dikdortgen[cite: 6]
-Member Variable       | Field (Alan)       | private double genislik;[cite: 6]
-Constructor           | Constructor        | public Dikdortgen(double g, double y)[cite: 6]
-Member Function       | Method             | public void setGenislik(double g)[cite: 7]
+Class                 | Class              | public class Dikdortgen
+Member Variable       | Field (Alan)       | private double genislik;
+Constructor           | Constructor        | public Dikdortgen(double g, double y)
+Member Function       | Method             | public void setGenislik(double g)
 
 Bir Kodun Yapıcı Olduğunu Anlamanın 2 Kuralı:
-* Kural 1: Adı sınıfla birebir aynıdır (Büyük/küçük harf duyarlı)[cite: 6].
-* Kural 2: DÖNÜŞ TİPİ KESİNLİKLE YOKTUR ('void', 'double', 'int' yazmaz)[cite: 6].
+* Kural 1: Adı sınıfla birebir aynıdır (Büyük/küçük harf duyarlı)
+* Kural 2: DÖNÜŞ TİPİ KESİNLİKLE YOKTUR ('void', 'double', 'int' yazmaz)
 
 
 2. YAPICI ZİNCİRLEME (CONSTRUCTOR CHAINING) VE 'this(...)'
 --------------------------------------------------------------------------------
     public Dikdortgen(double kenar) {
-        this(kenar, kenar); // Patron yapıcıyı çağırır[cite: 7]
+        this(kenar, kenar); // Patron yapıcıyı çağırır
     }
 
 * 'this.kenar = kenar;' Neden Yazılmaz?
@@ -168,7 +168,7 @@ Bir Kodun Yapıcı Olduğunu Anlamanın 2 Kuralı:
   vardır[cite: 6]. Kare, iki kenarı eşit bir dikdörtgendir[cite: 6, 7].
 * 'this.' ile 'this(...)' Farkı:
   - this.alan : Nesnenin içindeki değişkene işaret eder[cite: 6, 7].
-  - this(...) : Sınıf içindeki parametresi uyan BAŞKA BİR YAPICIYI çalıştırır[cite: 7].
+  - this(...) : Sınıf içindeki parametresi uyan BAŞKA BİR YAPICIYI çalıştırır
 * ALTIN KURAL: 'this(...)' çağrısı, yapıcının süslü parantezinden sonraki 
   İLK ÇALIŞTIRILABİLİR SATIR olmak zorundadır! Öncesine kod yazılırsa derlenmez.
 
@@ -176,40 +176,40 @@ Bir Kodun Yapıcı Olduğunu Anlamanın 2 Kuralı:
 3. TERNARY OPERATÖRÜ (? :) VE GÜVENLİ FİLTRELEME
 --------------------------------------------------------------------------------
     private static double pozitifYap(double deger) {
-        return (deger > 0) ? deger : 1.0;[cite: 7]
+        return (deger > 0) ? deger : 1.0;
     }
 
-* Çalışma Mantığı: (Koşul) ? Doğruysa_Dönecek : Yanlışsa_Dönecek[cite: 7]
-* Sıfırdan Büyükse: Değeri olduğu gibi korur (örn: 0.5 girilirse 0.5 kalır)[cite: 7].
-* Sıfır veya Eksi ise: Nesne geçersiz duruma düşmesin diye 1.0 değerine eşitler[cite: 7].
-* Neden 'private static'? Sadece sınıfın iç matematiğidir; dış dünyaya kapalıdır[cite: 7]. 
-  Nesne alanlarına ('this') ihtiyaç duymadığı için 'static' tanımlanmıştır[cite: 7].
+* Çalışma Mantığı: (Koşul) ? Doğruysa_Dönecek : Yanlışsa_Dönecek
+* Sıfırdan Büyükse: Değeri olduğu gibi korur (örn: 0.5 girilirse 0.5 kalır).
+* Sıfır veya Eksi ise: Nesne geçersiz duruma düşmesin diye 1.0 değerine eşitler
+* Neden 'private static'? Sadece sınıfın iç matematiğidir; dış dünyaya kapalıdır
+  Nesne alanlarına ('this') ihtiyaç duymadığı için 'static' tanımlanmıştır.
 
 
 4. KAYAN NOKTALI SAYILARDA EŞİTLİK VE tolerans (1e-9)
 --------------------------------------------------------------------------------
     public boolean karedirMi() {
-        return Math.abs(genislik - yukseklik) < 1e-9;[cite: 9]
+        return Math.abs(genislik - yukseklik) < 1e-9;
     }
 
-* '1e-9' Nedir? Bilimsel gösterimle $1 \times 10^{-9}$ yani 0.000000001 (milyarda bir)[cite: 9].
+* '1e-9' Nedir? Bilimsel gösterimle $1 \times 10^{-9}$ yani 0.000000001 (milyarda bir)[.
 * Neden 'genislik == yukseklik' Kullanılmaz?
   İşlemciler kesirli sayıları (double/float) ikilik tabanda tutarken mikroskobik 
   yuvarlama farkları oluşur (Örn: 0.1 + 0.2 == 0.3 ifadesi 'false' döner).
 * Epsilon (Tolerans) Yaklaşımı: İki kenarın farkının mutlak değeri milyarda birden 
-  küçükse, aradaki fark donanımsal yuvarlama kabul edilir ve şekil kare sayılır[cite: 9].
+  küçükse, aradaki fark donanımsal yuvarlama kabul edilir ve şekil kare sayılır.
 
 
 5. KAPSÜLLEME (ENCAPSULATION) VE ERİŞİM DENETİMİ
 --------------------------------------------------------------------------------
-* Alanlar 'private' yapılarak dış dünyadan doğrudan müdahaleye kapatılır[cite: 6].
-* Değişiklikler yalnızca kontrollü 'setter' metotları üzerinden yapılır[cite: 7].
+* Alanlar 'private' yapılarak dış dünyadan doğrudan müdahaleye kapatılır].
+* Değişiklikler yalnızca kontrollü 'setter' metotları üzerinden yapılır
 * Erken Dönüş (Guard Clause):
       if (genislik <= 0) {
-          System.out.printf("Uyari: genislik pozitif olmalidir...%n");[cite: 7]
-          return; // Hatalıysa işlemi yapmadan metodu anında keser![cite: 7]
+          System.out.printf("Uyari: genislik pozitif olmalidir...%n");
+          return; // Hatalıysa işlemi yapmadan metodu anında keser!
       }
-      this.genislik = genislik;[cite: 7]
+      this.genislik = genislik;
 
 
 6. "BAK ŞÖYLE YAPARSAN HATA ALIRSIN" (SINAV VE MÜLAKAT TUZAKLARI)
@@ -224,9 +224,9 @@ Bir Kodun Yapıcı Olduğunu Anlamanın 2 Kuralı:
 
 [TUZAK 3] Hesaplanabilir Özellikleri Değişken (Field) Yapmak:
           Sınıfta 'private double alan;' diye değişken tutmak veri tutarsızlığı 
-          yaratır[cite: 8]. Genişlik güncellendiğinde alan eski kalır[cite: 8]. 
+          yaratır. Genişlik güncellendiğinde alan eski kalır. 
           Doğrusu: 'public double getAlan() { return genislik * yukseklik; }' 
-          şeklinde dinamik hesaplatmaktır[cite: 8].
+          şeklinde dinamik hesaplatmaktır
 
 [TUZAK 4] double Karşılaştırmasında '==' Kullanmak:
           Vize sınavında 'double' türündeki iki sayıyı '==' ile karşılaştırmak 

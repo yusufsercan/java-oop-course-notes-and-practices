@@ -1,0 +1,84 @@
+================================================================================
+📌 VİZE HAZIRLIK NOTU: NESNE YAŞAM DÖNGÜSÜ, ÇÖP TOPLAYICI (GC) VE try-with-resources
+================================================================================
+
+1. DİLLER ARASI BELLEK YÖNETİMİ FARKI (TABLO 2.12)
+--------------------------------------------------------------------------------
+Soru                  | C Dili             | C++ Dili          | Java
+----------------------|--------------------|-------------------|----------------------
+Bellek nasıl ayrılır? | malloc(sizeof(T))  | new T()           | new T()[cite: 6]
+Bellek nasıl verilir? | free(p) — elle     | delete p — elle   | Çöp toplayıcı (otomatik)[cite: 6]
+Yıkıcı (destructor)?  | Yok                | Var (~T())        | KESİNLİKLE YOKTUR![cite: 6]
+Ne zaman geri alınır? | free çağrıldığı an | delete anında     | Belirsiz (JVM karar verir)[cite: 6]
+Bellek sızıntısı?     | Evet (unutulursa)  | Evet (unutulursa) | Nadiren (referans tutulursa)[cite: 6]
+Kaynak kapatma        | fclose — elle      | Yıkıcıda (~T())   | try-with-resources[cite: 6]
+
+
+2. BİR JAVA NESNESİNİN 5 AŞAMALI YAŞAM DÖNGÜSÜ
+--------------------------------------------------------------------------------
+1. Bellek Ayrılır     : 'new' ile Heap'te yer açılır, alanlar varsayılan değerle başlar[cite: 6].
+2. Yapıcı Çalışır    : 'this(...)' zinciri biter; nesne geçerli ve hazır duruma gelir[cite: 6].
+3. Kullanılır         : Referans üzerinden metotlar çağrılır, alanlar değişir[cite: 6].
+4. Erişilemez Olur    : Nesneyi gösteren son referans başka nesneye kayar veya 'null' olur[cite: 6].
+5. Çöp Toplanır       : JVM bellek ihtiyacı duyduğunda alanı temizler; zamanı belirsizdir[cite: 6].
+
+* Kritik Ayrım: İlk 3 aşama yazılımcının elindedir; son 2 aşama tamamen JVM'e aittir[cite: 6].
+
+
+3. 'System.gc()' TUZAĞI (EMİR DEĞİL, BİR RİCADIR!)
+--------------------------------------------------------------------------------
+* 'System.gc()' metodu Çöp Toplayıcı'yı ZORLA ÇALIŞTIRMAZ[cite: 6]. 
+* Yalnızca JVM'e bellek temizliği için bir "öneride" bulunur[cite: 6].
+* JVM isterse bu öneriyi tamamen yok sayabilir[cite: 6]. 
+* Canlı üretim kodunda 'System.gc()' çağırmak neredeyse her zaman tasarım hatasıdır[cite: 6].
+
+
+4. DIŞ KAYNAK YÖNETİMİ: 'try-with-resources' VE 'AutoCloseable'
+--------------------------------------------------------------------------------
+Çöp Toplayıcı sadece RAM'i temizler; dosya, veritabanı veya ağ soketlerini zamanında 
+kapatamaz[cite: 7]. Açık kalan kaynaklar işletim sistemini kilitler[cite: 7].
+
+A) Ne Zaman Kullanılır?
+* Nesne bir dosyayı, soketi, veritabanını tutuyorsa ve sınıf 'AutoCloseable' 
+  arayüzünü uyguluyorsa (implements AutoCloseable) kullanılır[cite: 7]. 
+* Normal sınıflarda ('Ogrenci', 'Nokta') ASLA kullanılmaz.
+
+B) Sözdizimi (Syntax):
+   try (Kaynak k = new Kaynak("ayarlar.txt")) {
+       k.kullan();
+       // İşlem yapılır...
+   } catch (Exception e) {
+       // Hata yakalanır...
+   }
+
+C) Altın Kural (Kapanış Garantisi):
+* Blok normal tamamlansa da veya içeride beklenmedik bir HATA (Exception) fırlatılsa 
+  bile sistem 'k.close()' metodunu 'catch' bloğundan BİLE ÖNCE otomatik çağırır[cite: 8].
+
+
+5. "BAK ŞÖYLE YAPARSAN HATA ALIRSIN" (SINAV VE MÜLAKAT TUZAKLARI)
+--------------------------------------------------------------------------------
+[TUZAK 1] "Java'da yıkıcı metot (destructor) vardır" Demek:
+          Java'da YIKICI YOKTUR! C++'taki '~Sinif()' mantığı Java'da bulunmaz[cite: 6]. 
+          Kaynak kapatma işini 'AutoCloseable' ve 'try-with-resources' üstlenir[cite: 6, 7].
+
+[TUZAK 2] 'finalize()' Metodunu Çözüm Sanmak:
+          Eski Java sürümlerinde yıkıcı gibi anlatılan 'finalize()', Java 9'da terk 
+          edildi (deprecated), Java 18'de silinmeye aday gösterildi[cite: 8]. 
+          Güvenilir değildir, asla kullanılmaz[cite: 8].
+
+[TUZAK 3] 'AutoCloseable' Olmayan Sınıfı 'try' Parantezine Yazmak:
+          try (Ogrenci o = new Ogrenci("Ali", 101)) { ... }
+          DERLEME HATASI! Ogrenci sınıfı 'AutoCloseable' uygulamadığı için 
+          Java derleyicisi bu kodu derlemez.
+
+
+6. VİZE ÖNCESİ 10 SANİYELİK KONTROL TABLOSU
+--------------------------------------------------------------------------------
+Kavram                  | Ne İşe Yarar?                       | Kim Kontrol Eder?
+------------------------|-------------------------------------|------------------
+Garbage Collector (GC)  | Sahipsiz RAM nesnelerini temizler   | JVM (Otomatik)[cite: 6]
+System.gc()             | JVM'e temizlik ricasında bulunur    | Yazılımcı (Öneri)[cite: 6]
+try-with-resources      | Dosya/soket gibi kaynakları kapatır | Java (Garantili)[cite: 8]
+AutoCloseable           | close() metodunu zorunlu kılar      | Sınıf Arayüzü[cite: 7]
+================================================================================

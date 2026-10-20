@@ -17,7 +17,7 @@ public class Gorev1_KitapDemo {
 }
 
 /*
-================================================================================
+==================================================================================
 1. Alanlar private olmasaydı:
    -> Nesne doğduktan sonra dışarıdan doğrudan müdahale ile geçersiz değer 
       atanabilmesi (veri bütünlüğünün bozulması) sorunu geri gelirdi.

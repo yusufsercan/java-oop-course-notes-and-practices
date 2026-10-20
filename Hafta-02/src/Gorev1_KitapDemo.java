@@ -15,3 +15,18 @@ public class Gorev1_KitapDemo {
         System.out.println(k3);
     }
 }
+
+/*
+================================================================================
+1. Alanlar private olmasaydı:
+   -> Nesne doğduktan sonra dışarıdan doğrudan müdahale ile geçersiz değer 
+      atanabilmesi (veri bütünlüğünün bozulması) sorunu geri gelirdi.
+
+2. Doğrulama main içine yazılsaydı:
+   -> Kod tekrarı (DRY ihlali) meydana gelir ve kontrollerin unutulduğu çağrılarda 
+      nesnenin geçersiz verilerle oluşması engellenemezdi.
+
+3. toString() ezilmeseydi (override edilmeseydi):
+   -> Object sınıfının varsayılan çıktısı olan 'Kitap@hexadecimalKod' yazılırdı.
+================================================================================
+*/

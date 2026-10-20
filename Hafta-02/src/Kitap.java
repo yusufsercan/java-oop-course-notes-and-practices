@@ -43,17 +43,21 @@ public class Kitap {
             this.fiyat = fiyat;
         }
     }
-    public Kitap(String baslik, String yazar, int sayfaSayisi, int basimYili) {
+    public Kitap(String baslik, String yazar, int sayfaSayisi, int basimYili) 
+{
     this(baslik, yazar, sayfaSayisi, basimYili, 0.0); // 5 parametreli patron yapıcıya paslar
 }
-public Kitap(String baslik, String yazar) {
+public Kitap(String baslik, String yazar) 
+{
     this(baslik, yazar, 1, 2026, 0.0); // 5 parametreli patron yapıcıya paslar
 }
 
-public Kitap(Kitap kaynak) {
+public Kitap(Kitap kaynak) 
+{
     this(kaynak.baslik, kaynak.yazar, kaynak.sayfaSayisi, kaynak.basimYili, kaynak.fiyat); //
 }
-public void setFiyat(double fiyat) {
+public void setFiyat(double fiyat)
+ {
     if (fiyat < 0.0) {
         System.out.println("Uyari: Fiyat negatif olamaz; degisiklik yapilmadi.");
         return;

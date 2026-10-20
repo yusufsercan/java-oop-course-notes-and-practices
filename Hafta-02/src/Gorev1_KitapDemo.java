@@ -1,8 +1,8 @@
 public class Gorev1_KitapDemo {
     public static void main(String[] args) {
         System.out.println("--- Kutuphane ---");
-        Kitap k1 = new Kitap("Nesne Yonelimli Programlama", "Juniorr", 520, 2024, 480.0);
-        Kitap k2 = new Kitap("Veri Yapilari", "thouaass", 310, 2019, 0.0);
+        Kitap k1 = new Kitap("Nesne Yonelimli Programlama", "D.thoure", 520, 2024, 480.0);
+        Kitap k2 = new Kitap("Veri Yapilari", "A. utyaru", 310, 2019, 0.0);
         
         // Yeni yapıcı testi (Fiyatı sonradan belirlenen 3. kitap):
         Kitap k3 = new Kitap("Algoritmalar", "C. Leiserson", 450, 2022);

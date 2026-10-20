@@ -36,6 +36,7 @@ public class Gorev1_KitapDemo {
 }
 
 /*
+gorev1
 ==================================================================================
 1. Alanlar private olmasaydı:
    -> Nesne doğduktan sonra dışarıdan doğrudan müdahale ile geçersiz değer 
@@ -48,4 +49,20 @@ public class Gorev1_KitapDemo {
 3. toString() ezilmeseydi (override edilmeseydi):
    -> Object sınıfının varsayılan çıktısı olan 'Kitap@hexadecimalKod' yazılırdı.
 ================================================================================
+
+gorev2
+================================================================================
+1. Değişiklik Sayısı:
+   -> Ayrı ayrı yazılsaydı 3 yer gerekirdi.
+   -> this(...) zinciri sayesinde sadece 1 merkezi yerde değiştirmek yeterlidir[cite: 8, 10].
+
+2. İki String Parametreli Yapıcı Çakışması:
+   -> Bulunamaz. Derleyici isimlere değil, parametre türlerinin sırasına 
+      bakar [(String, String)]. İki imza aynı olduğu için belirsizlik hatası verir[cite: 10].
+
+3. Nesne Kopyalama ve '==' Operatörü:
+   -> 'kopya = k1'           : Adres kopyalar, aynı nesneyi gösterir -> (k1 == kopya) TRUE[cite: 9, 10].
+   -> 'kopya = new Kitap(k1)': Yeni nesne üretir, bağımsız adrestir   -> (k1 == kopya) FALSE[cite: 8, 9, 10].
+================================================================================
+
 */

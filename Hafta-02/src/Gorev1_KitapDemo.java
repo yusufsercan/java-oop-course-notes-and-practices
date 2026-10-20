@@ -1,18 +1,37 @@
 public class Gorev1_KitapDemo {
     public static void main(String[] args) {
         System.out.println("--- Kutuphane ---");
-
-        // Föydeki terminal çıktısını birebir üreten kitaplar
-        Kitap k1 = new Kitap("Nesne Yonelimli Programlama", "R. Benveniste", 520, 2024, 480.0);
-        Kitap k2 = new Kitap("Veri Yapilari", "A. Demir", 310, 2019, 0.0);
+        Kitap k1 = new Kitap("Nesne Yonelimli Programlama", "Juniorr", 520, 2024, 480.0);
+        Kitap k2 = new Kitap("Veri Yapilari", "thoduss", 310, 2019, 0.0);
+        
+        // Yeni yapıcı testi (Fiyatı sonradan belirlenen 3. kitap):
+        Kitap k3 = new Kitap("Algoritmalar", "C. Leiserson", 450, 2022);
+        k3.setFiyat(199.90);
 
         System.out.println(k1);
         System.out.println(k2);
-
-        // Hatalı değer doğrulama denemesi (Savunmacı test)
-        System.out.println("\n--- Hatali Deger Denemesi ---");
-        Kitap k3 = new Kitap("", null, -10, 1300, -50.0);
         System.out.println(k3);
+
+        // --- Kopya Yapıcı Testi ---
+        System.out.println("\n--- Kopya yapici testi ---");
+        Kitap kopya = new Kitap(k1);
+        System.out.println("k1 == kopya -> " + (k1 == kopya)); // Adresler farklı olduğu için 'false' basar[cite: 9]
+
+        // --- Dizi ile Raf Toplamı ve En Pahalı Kitabı Bulma ---
+        Kitap[] raf = { k1, k2, k3 };
+
+        double toplamDeger = 0.0;
+        Kitap enPahali = raf[0];
+
+        for (Kitap k : raf) {
+            toplamDeger += k.getFiyat();
+            if (k.getFiyat() > enPahali.getFiyat()) {
+                enPahali = k;
+            }
+        }
+
+        System.out.printf("%nRaf toplam degeri : %.2f TL%n", toplamDeger);
+        System.out.printf("En pahali kitap   : %s%n", enPahali.getBaslik());
     }
 }
 

@@ -30,9 +30,12 @@ public class Kitap {
         }
 
         // Basım Yılı Doğrulama (1450-2100 aralığı dışında ise 2026)
-        if (basimYili < 1450 || basimYili > 2100) {
+        if (basimYili < 1450 || basimYili > 2100) 
+        {
             this.basimYili = 2026;
-        } else {
+        } 
+        else    
+        {
             this.basimYili = basimYili;
         }
 

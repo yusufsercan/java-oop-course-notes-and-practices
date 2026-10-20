@@ -43,6 +43,43 @@ public class Kitap {
             this.fiyat = fiyat;
         }
     }
+    public Kitap(String baslik, String yazar, int sayfaSayisi, int basimYili) {
+    this(baslik, yazar, sayfaSayisi, basimYili, 0.0); // 5 parametreli patron yapıcıya paslar
+}
+public Kitap(String baslik, String yazar) {
+    this(baslik, yazar, 1, 2026, 0.0); // 5 parametreli patron yapıcıya paslar
+}
+
+public Kitap(Kitap kaynak) {
+    this(kaynak.baslik, kaynak.yazar, kaynak.sayfaSayisi, kaynak.basimYili, kaynak.fiyat); //
+}
+public void setFiyat(double fiyat) {
+    if (fiyat < 0.0) {
+        System.out.println("Uyari: Fiyat negatif olamaz; degisiklik yapilmadi.");
+        return;
+    }
+    this.fiyat = fiyat; // İşte eksik olan kritik satır burasıydı!
+}
+
+public boolean kalinMi() {
+    return this.sayfaSayisi > 400; //
+}
+
+public double sayfaBasinaFiyat() {
+    return this.fiyat / this.sayfaSayisi; //
+}
+public void indirimUygula(double yuzde) {
+    if (yuzde < 0.0 || yuzde > 100.0) {
+        System.out.println("Uyari: Gecersiz indirim orani (0-100 arasi olmali).");
+        return;
+    }
+    this.fiyat -= this.fiyat * (yuzde / 100.0);
+}
+
+public int yasi(int buguninYili) {
+    return buguninYili - this.basimYili; //[cite: 9]
+}
+
 
     // 3. Getter Metotları (Setter kesinlikle yazmıyoruz!)
     public String getBaslik() {

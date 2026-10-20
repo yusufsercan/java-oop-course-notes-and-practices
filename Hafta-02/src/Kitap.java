@@ -6,67 +6,65 @@ public class Kitap {
     private int basimYili;
     private double fiyat;
 
-    // --- YAPICILAR (CONSTRUCTORS) ---
-
-    // A) Tam Yapıcı (Tüm alanları doğrular - Ana Patron)
+    // 2. Tam Yapıcı (Constructor) - void KESİNLİKLE YOK!
     public Kitap(String baslik, String yazar, int sayfaSayisi, int basimYili, double fiyat) {
-        this.baslik = (baslik == null || baslik.isBlank()) ? "İsimsiz" : baslik;
-        this.yazar = (yazar == null || yazar.isBlank()) ? "Bilinmiyor" : yazar;
-        this.sayfaSayisi = (sayfaSayisi <= 0) ? 1 : sayfaSayisi;
-        this.basimYili = (basimYili < 1450 || basimYili > 2100) ? 2026 : basimYili;
-        this.fiyat = (fiyat < 0.0) ? 0.0 : fiyat;
-    }
+        // Başlık Doğrulama
+        if (baslik == null || baslik.isBlank()) {
+            this.baslik = "İsimsiz";
+        } else {
+            this.baslik = baslik;
+        }
 
-    // B) Fiyatı Bilinmeyen Kitap Yapıcısı
-    public Kitap(String baslik, String yazar, int sayfaSayisi, int basimYili) {
-        this(baslik, yazar, sayfaSayisi, basimYili, 0.0);
-    }
+        // Yazar Doğrulama
+        if (yazar == null || yazar.isBlank()) {
+            this.yazar = "Bilinmiyor";
+        } else {
+            this.yazar = yazar;
+        }
 
-    // C) Yalnızca Başlık ve Yazarı Bilinen Kitap Yapıcısı
-    public Kitap(String baslik, String yazar) {
-        this(baslik, yazar, 1, 2026, 0.0);
-    }
+        // Sayfa Sayısı Doğrulama (Pozitif değilse 1)
+        if (sayfaSayisi <= 0) {
+            this.sayfaSayisi = 1;
+        } else {
+            this.sayfaSayisi = sayfaSayisi;
+        }
 
-    // D) Kopya Yapıcı (Copy Constructor)
-    public Kitap(Kitap kaynak) {
-        this(kaynak.baslik, kaynak.yazar, kaynak.sayfaSayisi, kaynak.basimYili, kaynak.fiyat);
-    }
+        // Basım Yılı Doğrulama (1450-2100 aralığı dışında ise 2026)
+        if (basimYili < 1450 || basimYili > 2100) {
+            this.basimYili = 2026;
+        } else {
+            this.basimYili = basimYili;
+        }
 
-    // --- GETTER METOTLARI ---
-    public String getBaslik() { return baslik; }
-    public String getYazar() { return yazar; }
-    public int getSayfaSayisi() { return sayfaSayisi; }
-    public int getBasimYili() { return basimYili; }
-    public double getFiyat() { return fiyat; }
-
-    // --- DENETİMLİ SETTER VE DAVRANIŞ METOTLARI ---
-    public void setFiyat(double fiyat) {
+        // Fiyat Doğrulama (Negatifse 0.0)
         if (fiyat < 0.0) {
-            System.out.println("Uyari: Fiyat negatif olamaz; degisiklik yapilmadi.");
-            return;
+            this.fiyat = 0.0;
+        } else {
+            this.fiyat = fiyat;
         }
-        this.fiyat = fiyat;
     }
 
-    public boolean kalinMi() {
-        return this.sayfaSayisi > 400;
+    // 3. Getter Metotları (Setter kesinlikle yazmıyoruz!)
+    public String getBaslik() {
+        return baslik;
     }
 
-    public double sayfaBasinaFiyat() {
-        return this.fiyat / this.sayfaSayisi;
+    public String getYazar() {
+        return yazar;
     }
 
-    public void indirimUygula(double yuzde) {
-        if (yuzde < 0.0 || yuzde > 100.0) {
-            System.out.println("Uyari: Gecersiz indirim orani (0-100 arasi olmali).");
-            return;
-        }
-        this.fiyat -= this.fiyat * (yuzde / 100.0);
+    public int getSayfaSayisi() {
+        return sayfaSayisi;
     }
 
-    public int yasi(int buguninYili) {
-        return buguninYili - this.basimYili;
+    public int getBasimYili() {
+        return basimYili;
     }
+
+    public double getFiyat() {
+        return fiyat;
+    }
+
     // 4. Biçimli toString Metodu
     @Override
     public String toString() {
@@ -79,7 +77,7 @@ public class Kitap {
         return String.format("%-28s %-16s %3d sf. %4d %9.2f TL%s",
                 this.baslik, this.yazar, this.sayfaSayisi, this.basimYili, this.fiyat, kalinEtiketi);
     }
-}   
+}
 
 
 /*

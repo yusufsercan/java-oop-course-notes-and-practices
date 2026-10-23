@@ -18,6 +18,13 @@ This repository contains Java code examples, OOP implementations, and laboratory
   * Constructor design: Full, short, and copy constructors with constructor chaining (`this(...)`).
   * JVM memory model: Zero-initialization phase, Heap allocation vs. Stack references.
   * Object collections: Reference arrays (`Ogrenci[]`), enhanced `for-each` traversal, and formatted representation (`toString()`).
+ 
+ * `Hafta-03` : **The Four Pillars of OOP & Polymorphic Design**
+  * Architectural Anti-Patterns: Transitioning from fragile type-code and repetitive `switch` statements (`SekilKotu`) to extensible class hierarchies; eliminating dead fields and silent runtime calculation failures.
+  * True Encapsulation & Domain Invariants: Enforcing business rules alongside data via domain methods (`yatir()`, `cek()`) while restricting arbitrary state modification (`BankaHesabi`).
+  * Abstraction & Contract-First Design: Decoupling the "what" from the "how" using `abstract class` (`Sekil`) and `interface` (`Odeme`); programming against abstract contracts rather than concrete implementations (`Kasa`).
+  * Inheritance & Dynamic Binding: Establishing `IS-A` hierarchies with `extends` and `super(...)` constructor chaining; runtime polymorphism, static (declared) vs. dynamic (actual) reference types (`Sekil s = new Daire(...)`), and safe downcasting with `instanceof`.
+    
 ---
 
 ## 💻 Development Environment

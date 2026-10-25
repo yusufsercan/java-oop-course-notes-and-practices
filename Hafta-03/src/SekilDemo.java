@@ -510,7 +510,7 @@ Aşağı Dönüşüm (Downcasting) ile:
         System.out.println(d.getYaricap()); // Artık çağrılabilir!
 
     }
-
+    
 AYRIM 2: MİRAS MI, ARAYÜZ MÜ? (IS-A vs CAN-DO)
 ------------------------------------------------------------------------------
 

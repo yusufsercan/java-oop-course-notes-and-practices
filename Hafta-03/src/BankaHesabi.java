@@ -73,3 +73,9 @@ public class BankaHesabi {
         return String.format("%s (%s) bakiye=%.2f TL", sahip, iban, bakiye);
     }
 }
+
+/*
+NOT:Bir alan için setter yazmadan önce şu soruyu sorun: “Bu alanı dışarıdan keyfî bir değere ayarlamak anlamlı bir
+iş işlemi midir?” Yanıt hayırsa setter yazmayın; onun yerine gerçek iş işlemini adlandıran bir metot yazın.
+hesap.setBakiye(1700) anlamsızdır; hesap.yatir(500) anlamlıdır.
+*/

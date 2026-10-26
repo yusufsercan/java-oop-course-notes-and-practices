@@ -77,5 +77,78 @@ Dosya Adı: hafta03_miras_ve_kalitim_vize_notu.txt
   - Soyut Sözleşme: alan(), cevre() (Gövdesiz; alt sınıflar doldurmak zorunda)
 
 * Somut Kanıt (Ucgen.java):
-  Ucgen sınıfı toplamda yalnızca 32 satırdır.
+  Ucgen sınıfı toplamda yalnızca 32 satırdır. İçinde getAd(), getRenk(),
+  setRenk(), ozet() veya toString() metotlarının HİÇBİRİ yazılmamıştır.
+  Buna rağmen terminal çıktısında:
+  "Dik ucgen   renk=yesil   alan= 12.000   cevre= 17.211"
+  bilgisi eksiksiz basılır; çünkü ozet() metodunu üst sınıftan devralmıştır.
+
+3. MİRAS YOLUYLA NELER DEVRALINIR? (TABLO 3.8 - VİZE GARANTİ TABLO)
+--------------------------------------------------------------------------------
+Üst Sınıftaki Üye   | Alt Sınıfta Erişilebilir mi? | Neden / Nasıl İşler?
+--------------------+------------------------------+----------------------------
+public metot        | Evet, doğrudan erişilir      | Herkese açıktır.
+                    |                              |
+protected üye       | Evet, doğrudan erişilir      | Yalnızca alt sınıflara ve 
+                    |                              | aynı pakete açıktır.
+                    |                              |
+varsayılan (paket)  | Aynı paketteyse EVET,        | Erişim yetkisi paket 
+                    | farklı paketteyse HAYIR      | sınırıyla belirlenir.
+                    |                              |
+private alan        | Doğrudan: HAYIR              | Alan bellekte devralınır 
+                    | Dolaylı : EVET               | ama alt sınıfa görünmez.
+                    |                              | public getter/setter ile 
+                    |                              | güvenle okunur/yazılır.
+                    |                              |
+Yapıcı (Constructor)| HAYIR, devralınmaz           | Yapıcılar miras alınmaz!
+                    |                              | Alt sınıf 'super(...)' ile 
+                    |                              | üst yapıcıyı çağırmalıdır.
+                    |                              |
+static metot        | Evet, miras alınır           | Sınıfa aittir, nesneye 
+                    | AMA @Override EDİLEMEZ       | değil. Alt sınıfta 
+                    |                              | yazılırsa gizlenir (hiding).
+
+4. VİZE SINAVI TUZAKLARI VE KRİTİK AYRINTILAR
+--------------------------------------------------------------------------------
+[TUZAK 1] "private alanlar alt sınıfa geçer mi?"
+CEVAP: EVET. Bir nesne RAM'de (Heap) üretildiğinde, üst sınıfın private alanları
+da o nesnenin belleğinde fiziksel olarak yer tutar. Ancak alt sınıfın kodundan
+doğrudan 'this.ad' yazamazsın (derleme hatası verir). Üst sınıfın 'getAd()' 
+metodu üzerinden dolaylı olarak erişirsin.
+
+[TUZAK 2] "Yapıcılar (Constructor) miras alınır mı?"
+CEVAP: KESİNLİKLE HAYIR. Bir sınıf üst sınıfın yapıcısını miras alamaz.
+Alt sınıf kendi yapıcısını yazmak ve ilk satırda 'super(...)' diyerek üst sınıfın
+kurucusunu tetiklemek zorundadır.
+
+[TUZAK 3] "static metotlar override edilir mi?"
+CEVAP: HAYIR. Çok biçimlilik (polymorphism) ve metot ezme (@Override) 
+yalnızca çalışma zamanında (Heap bellekteki somut nesneler üzerinde) çalışır. 
+static metotlar ise derleme anında sınıfa bağlanır.
+
+5. MÜHENDİSLİK İLKESİ: IS-A vs. HAS-A (KALITIM MI, BİLEŞİM Mİ?)
+--------------------------------------------------------------------------------
+Miras, kod tekrarını önlemenin TEK ve HER ZAMAN DOĞRU yolu değildir.
+Bir sınıfı diğerine bağlamadan önce şu soruyu sormak zorundasın:
+
+  "Alt sınıf gerçekten üst sınıfın bir türü müdür?"
+
+* IS-A İlişkisi (Kalıtım / Inheritance - extends):
+  - Daire bir Şekil midir? -> EVET (Daire IS-A Sekil) -> Miras doğru.
+  - Ucgen bir Şekil midir? -> EVET (Ucgen IS-A Sekil) -> Miras doğru.
+
+* HAS-A İlişkisi (Bileşim / Composition):
+  - Araba bir Motor mudur? -> HAYIR!
+  - Araba extends Motor YANLIŞ bir tasarımdır!
+  - Arabanın bir motoru VARDIR (Araba HAS-A Motor).
+  - Doğru Tasarım: Miras yerine motoru arabanın içine nesne olarak koymaktır:
+    class Araba {
+        private Motor motor; // Composition (Bileşim)
+    }
+
+ÖZET FORMÜL:
+- "Bir türü müdür?" -> IS-A  -> extends (Miras)
+- "Sahip midir?"     -> HAS-A -> private Alan (Bileşim)
+- "Yapabilir mi?"    -> CAN-DO-> implements (Arayüz)
+================================================================================
 */

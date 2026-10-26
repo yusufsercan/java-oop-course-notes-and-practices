@@ -30,3 +30,52 @@ public class Ucgen extends Sekil {
         return taban + yukseklik + Math.hypot(taban, yukseklik);
     }
 }
+
+/*
+================================================================================
+NESNE YÖNELİMLİ PROGRAMLAMA - DERS ÇALIŞMA NOTLARI
+BÖLÜM 4.3: MİRAS (INHERITANCE) VE KODUN YENİDEN KULLANIMI
+Dosya Adı: hafta03_miras_ve_kalitim_vize_notu.txt
+================================================================================
+
+1. MİRASIN TEMEL AMACI: "ORTAK OLANI YUKARIDA BİR KEZ YAZMAK"
+--------------------------------------------------------------------------------
+- Tanım: Miras, bir sınıfın başka bir sınıfın üyelerini devralmasıdır.
+- İlke: Devralınan üyeler alt sınıfta kesinlikle yeniden yazılmaz; sanki o 
+  sınıfın içinde bizzat yazılmış gibi doğrudan kullanılır.
+- Çözülen Problem: Kod tekrarını (boilerplate / copy-paste) ortadan kaldırmak 
+  ve ortak davranışları tek bir merkezden yönetmektir. Bir değişiklik
+  gerektiğinde 10 ayrı sınıfa gitmek yerine sadece üst sınıftaki metodu 
+  güncellemek yeterli olur.
+
+2. JAVA MİRAS AĞACI (HIERARCHY TREE)
+--------------------------------------------------------------------------------
+                        +--------------------+
+                        |  java.lang.Object  |  <-- Her sınıfın gizli kökü
+                        +---------+----------+
+                                  |
+                                  v
+                        +--------------------+
+                        |abstract class Sekil|  <-- Ortak gövde
+                        +---------+----------+
+                                  |
+       +--------------------------+--------------------------+
+       |                          |                          |
+       v                          v                          v
++---------------+          +---------------+          +---------------+
+|  class Daire  |          |  class Kare   |          |  class Ucgen  |
++---------------+          +---------------+          +---------------+
+
+* java.lang.Object:
+  Java'da hiçbir sınıf başıboş değildir. Kodunda 'extends' yazmasan dahi 
+  derleyici her sınıfı otomatik olarak Object sınıfından türetir.
+  (toString(), equals(), hashCode() metotları buradan miras gelir).
+
+* abstract class Sekil:
+  - Ortak Alanlar : ad, renk (private)
+  - Ortak Metotlar: getAd(), getRenk(), setRenk(), ozet(), toString()
+  - Soyut Sözleşme: alan(), cevre() (Gövdesiz; alt sınıflar doldurmak zorunda)
+
+* Somut Kanıt (Ucgen.java):
+  Ucgen sınıfı toplamda yalnızca 32 satırdır.
+*/

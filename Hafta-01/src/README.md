@@ -18,21 +18,21 @@ This module marks the transition from procedural programming habits to the Objec
 ### Core & Practice Implementations
 | File | Description & Engineering Focus |
 | :--- | :--- |
-| **`Merhaba.java`** | Basic Java syntax, class declaration, and standard console stream operations.[cite: 9, 10] |
-| **`GirdiOrnegi.java`** | User input handling, stream scanning (`Scanner`), and primitive type parsing.[cite: 9, 10] |
-| **`YapisalYaklasim.java`** | Procedural banking simulation demonstrating the risks of exposed global state and manual synchronisation.[cite: 9, 10] |
-| **`NesneYaklasimi.java`** | Initial OOP approach bundling balance state and financial transactions within a single entity.[cite: 9, 10] |
-| **`Hesap.java`** | Encapsulated bank account model with validation rules for deposits and withdrawals.[cite: 9, 10] |
-| **`Ogrenci.java` & `OgrenciDemo.java`** | Student model and test driver illustrating constructor initialization and field shadowing resolution using `this`.[cite: 9, 10] |
-| **`Dikdortgen.java` & `DikdortgenDemo.java`** | Rectangle geometry model computing perimeter and area while maintaining dimension validity.[cite: 9, 10] |
-| **`Car.java` & `CarDemo.java`** | Automotive entity modeling lifecycle, constructor instantiation, and state inspection.[cite: 9, 10] |
+| **`Merhaba.java`** | Basic Java syntax, class declaration, and standard console stream operations. |
+| **`GirdiOrnegi.java`** | User input handling, stream scanning (`Scanner`), and primitive type parsing. |
+| **`YapisalYaklasim.java`** | Procedural banking simulation demonstrating the risks of exposed global state and manual synchronisation. |
+| **`NesneYaklasimi.java`** | Initial OOP approach bundling balance state and financial transactions within a single entity. |
+| **`Hesap.java`** | Encapsulated bank account model with validation rules for deposits and withdrawals. |
+| **`Ogrenci.java` & `OgrenciDemo.java`** | Student model and test driver illustrating constructor initialization and field shadowing resolution using `this`. |
+| **`Dikdortgen.java` & `DikdortgenDemo.java`** | Rectangle geometry model computing perimeter and area while maintaining dimension validity. |
+| **`Car.java` & `CarDemo.java`** | Automotive entity modeling lifecycle, constructor instantiation, and state inspection. |
 
 ### 🧪 Laboratory Tasks
 | File | Problem Statement & Task Focus |
 | :--- | :--- |
-| **`Gorev1_Kimlik.java`** | Formatted string output, validation pipeline, and basic identity verification logic.[cite: 9, 10] |
-| **`Gorev2_NotIstatistik.java`** | Array processing, min/max/average calculation algorithms, and boundary condition checks.[cite: 9, 10] |
-| **`Kitap.java` & `Gorev3_KitapDemo.java`** | Bookstore catalog simulation utilizing constructor overloading and batch object management.[cite: 9, 10] |
+| **`Gorev1_Kimlik.java`** | Formatted string output, validation pipeline, and basic identity verification logic. |
+| **`Gorev2_NotIstatistik.java`** | Array processing, min/max/average calculation algorithms, and boundary condition checks. |
+| **`Kitap.java` & `Gorev3_KitapDemo.java`** | Bookstore catalog simulation utilizing constructor overloading and batch object management. |
 
 ---
 

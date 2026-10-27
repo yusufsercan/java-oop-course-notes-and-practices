@@ -1,49 +1,49 @@
-# 📌 Hafta 01 — Nesne Yönelimli Programlamaya Giriş ve Temel İlkeler
+# 📌 Week 01 — Introduction to Object-Oriented Programming
 
-Bu modülde, prosedürel (yapısal) programlama alışkanlıklarından Nesne Yönelimli Programlama (OOP) paradigmasına geçiş yapılmış; sınıf-nesne ilişkisi, yapıcılar (`constructor`), model-sürücü sınıf mimarisi ve temel bellek davranışları ele alınmıştır.
-
----
-
-## 🎯 Kazanımlar ve Odak Noktaları
-
-- **Yapısal vs. Nesne Yönelimli Yaklaşım:** Fonksiyon/veri ayrımından, veriyi ve davranışı tek çatıda toplayan sınıf yapısına geçiş.
-- **Model ve Sürücü (Demo) Mimarisi:** Sorumlulukların ayrılması ilkesi (*Separation of Concerns*) uyarınca `Main` metodunu model sınıflarının dışına (`*Demo.java`) çıkarma.
-- **Yapıcı Metotlar (`Constructors`):** Nesnenin bellekte (Heap) tutarlı bir başlangıç durumuyla doğmasını garanti altına alma.
-- **Kapsülleme Temelleri:** Alanların dış müdahalelere kapatılması ve anlamlı metotlarla kontrol edilmesi.
+This module marks the transition from procedural programming habits to the Object-Oriented Programming (OOP) paradigm in Java. It covers class-object relationships, state and behavior encapsulation, constructor logic, the `this` keyword, and the separation of concerns via Model-Driver architecture.
 
 ---
 
-## 📂 Dosya İndeksi ve Konu Eşleştirmesi
+## 🎯 Key Learning Objectives
 
-| Dosya Adı | Açıklama / Ele Alınan Mühendislik Konusu |
+* **Procedural vs. Object-Oriented Paradigm:** Moving from dispersed state/functions to unified classes combining data and behavior.
+* **Model & Driver (Demo) Architecture:** Adhering to the *Separation of Concerns* principle by decoupling domain logic from execution entry points (`main` methods).
+* **Constructors & Object Initialization:** Ensuring objects in Heap memory instantiate with valid, consistent initial states.
+* **Encapsulation Foundations:** Protecting internal object state against arbitrary mutation through controlled methods.
+
+---
+
+## 📂 Source Code Index
+
+### Core & Practice Implementations
+| File | Description & Engineering Focus |
 | :--- | :--- |
-| **`Merhaba.java`** | Temel Java sözdizimi, sınıf yapısı ve terminal akışı. |
-| **`GirdiOrnegi.java`** | `Scanner` sınıfı ile konsoldan veri okuma ve tip yönetimi. |
-| **`YapisalYaklasim.java`** | Prosedürel yaklaşımla banka hesabı simülasyonu (verilerin bağımsız değişkenlerde dağılması). |
-| **`NesneYaklasimi.java`** | Veri ile davranışın bir araya getirildiği ilk OOP bankacılık adımı. |
-| **`Hesap.java`** | Bakiye yönetimi, para çekme/yatırma iş kurallarını barındıran hesap modeli. |
-| **`Ogrenci.java` & `OgrenciDemo.java`** | Öğrenci modeli; `this` anahtar kelimesi, kurucu metotlar ve sürücü sınıf ayrımı. |
-| **`Dikdortgen.java` & `DikdortgenDemo.java`** | Alan ve çevre hesaplayan metotlar, veri bütünlüğü ve nesne davranışları. |
-| **`Car.java` & `CarDemo.java`** | Yapıcı metotların kullanımı, nesne durumunun (state) incelenmesi. |
+| **`Merhaba.java`** | Basic Java syntax, class declaration, and standard console stream operations.[cite: 9, 10] |
+| **`GirdiOrnegi.java`** | User input handling, stream scanning (`Scanner`), and primitive type parsing.[cite: 9, 10] |
+| **`YapisalYaklasim.java`** | Procedural banking simulation demonstrating the risks of exposed global state and manual synchronisation.[cite: 9, 10] |
+| **`NesneYaklasimi.java`** | Initial OOP approach bundling balance state and financial transactions within a single entity.[cite: 9, 10] |
+| **`Hesap.java`** | Encapsulated bank account model with validation rules for deposits and withdrawals.[cite: 9, 10] |
+| **`Ogrenci.java` & `OgrenciDemo.java`** | Student model and test driver illustrating constructor initialization and field shadowing resolution using `this`.[cite: 9, 10] |
+| **`Dikdortgen.java` & `DikdortgenDemo.java`** | Rectangle geometry model computing perimeter and area while maintaining dimension validity.[cite: 9, 10] |
+| **`Car.java` & `CarDemo.java`** | Automotive entity modeling lifecycle, constructor instantiation, and state inspection.[cite: 9, 10] |
 
-### 🧪 Laboratuvar Görevleri
-
-| Laboratuvar Dosyası | Çözülen Problem / Görev |
+### 🧪 Laboratory Tasks
+| File | Problem Statement & Task Focus |
 | :--- | :--- |
-| **`Gorev1_Kimlik.java`** | Konsol formatlama, string manipülasyonu ve kimlik doğrulama akışı. |
-| **`Gorev2_NotIstatistik.java`** | Dizi işlemleri, istatistiksel hesaplamalar ve sınır değer kontrolleri. |
-| **`Kitap.java` & `Gorev3_KitapDemo.java`** | Kitapçı simülasyonu; yapıcı aşırı yükleme (constructor overloading) ve nesne listeleme. |
+| **`Gorev1_Kimlik.java`** | Formatted string output, validation pipeline, and basic identity verification logic.[cite: 9, 10] |
+| **`Gorev2_NotIstatistik.java`** | Array processing, min/max/average calculation algorithms, and boundary condition checks.[cite: 9, 10] |
+| **`Kitap.java` & `Gorev3_KitapDemo.java`** | Bookstore catalog simulation utilizing constructor overloading and batch object management.[cite: 9, 10] |
 
 ---
 
-## ⚙️ Derleme ve Çalıştırma
+## ⚙️ Compilation & Execution
 
-Tüm sınıflar terminal üzerinden `javac` ile `bin/` dizinine derlenip `java` ile çalıştırılabilir:
+All classes can be compiled to a dedicated `bin/` directory and executed via terminal:
 
 ```bash
-# Hafta-01 ana dizinindeyken:
-# 1. Derleme (Örnek: OgrenciDemo)
+# From within the Hafta-01 directory:
+# 1. Compile (e.g., OgrenciDemo and its dependency Ogrenci)
 javac -d ./bin ./src/Ogrenci.java ./src/OgrenciDemo.java
 
-# 2. Çalıştırma
+# 2. Run the driver class
 java -cp ./bin OgrenciDemo

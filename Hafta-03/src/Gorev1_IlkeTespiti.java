@@ -231,4 +231,75 @@ II. BÖLGE BÖLGE İLKELERİN MÜHENDİSLİK DETAYLARI
      Döngü yalnızca 'x.tanit()' der. Kodda tek bir 'if / switch' yoktur!
      JVM çalışma anında (runtime) nesnenin gerçek türüne bakar:
      * x bir Gezgin ise -> Karakter.tanit() çalışır.
+
+
+
+     --------------------------------------------------------------------------------
+2. FÖY KORUMA SATIRI ANALİZİ (GEREKSİNİMLER)
+--------------------------------------------------------------------------------
+Föy Sorusu: Karakter sınıfındaki hasarAl() metodunda, canı sıfırın altına 
+düşürmeyecek koruma hangi satırdadır?
+
+Cevap: Kod 3.1 içerisindeki 23. satırdır:
+--> can = Math.max(0, can - miktar);
+
+Mühendislik Açıklaması:
+Gelen hasar mevcut candan büyük olsa bile (örneğin can=10 iken hasar=50),
+(10 - 50 = -40) olur. Math.max(0, -40) ifadesi 0 değerini seçer ve can asla
+negatif değer alamaz. Veri bütünlüğü korunur.
+
+
+--------------------------------------------------------------------------------
+3. FÖY KONTROL SORULARI VE RESMİ MÜHENDİSLİK YANITLARI
+--------------------------------------------------------------------------------
+
+[KONTROL SORUSU 1]
+Soru : B bölgesindeki "Savasabilir s = new Savasci(...)" bildiriminde,
+       's' referansıyla hasarAl() metodunu çağırabilir misiniz? Neden?
+
+Cevap: HAYIR, ÇAĞRILAMAZ! (Java Derleme Hatası: cannot find symbol).
+Neden?:
+1. Java derleyicisi bir metodun çağrılıp çağrılamayacağını kontrol ederken
+   sağdaki gerçek nesneye (Heap belleğe) değil, soldaki REFERANSIN TÜRÜNE
+   (Stack belleğe / Statik Türe) bakar.
+2. Burada 's' referansının türü 'Savasabilir' arayüzüdür (interface).
+3. 'Savasabilir' sözleşmesinde yalnızca 'int saldiriGucu()' imzası vardır;
+   bu sözleşmede 'hasarAl()' diye bir metot tanımlı DEĞİLDİR.
+4. Nesne bellekte bir Savasci olsa dahi, ona 'Savasabilir' penceresinden
+   baktığımız sürece yalnızca o arayüzün sunduğu metotları çağırabiliriz.
+
+--------------------------------------------------------------------------------
+
+[KONTROL SORUSU 2]
+Soru : C bölgesinde Savasci sınıfı hasarAl() metodunu hiç yazmamış. 
+       Bu metot nereden geliyor ve can alanına nasıl erişebiliyor?
+
+Cevap:
+1. Metodun Kaynağı:
+   'Savasci extends Karakter' kalıtım bağı sayesinde bu metot doğrudan ata
+   sınıf olan 'Karakter'den miras alınmıştır. Alt sınıfta yeniden yazmaya
+   gerek kalmadan üst sınıfın yeteneği devralınır.
+2. can Alanına Erişim:
+   'can' alanı Karakter sınıfında 'private' tanımlanmıştır. Savasci sınıfı
+   içinden doğrudan 'this.can' yazılarak bu alana erişilemez (kapsülleme kuralı).
+   Ancak 'hasarAl()' metodu zaten bizzat Karakter sınıfının kendi iç metodu
+   olduğu için 'can' değişkenini doğrudan okuyup değiştirebilir. Alt sınıf,
+   üst sınıfın private alanına bu metot aracılığıyla dolaylı yoldan erişir.
+
+--------------------------------------------------------------------------------
+
+[KONTROL SORUSU 3]
+Soru : D bölgesindeki dizinin türü Karakter[]. Diziye bir Buyucu koyabilmemizin
+       nedeni nedir?
+
+Cevap:
+1. Temel İlke: IS-A (Bir türüdür) İlişkisi ve Yukarı Çevrim (Upcasting).
+2. 'Buyucu extends Karakter' yazıldığı anda Java için "Her Büyücü aynı zamanda
+   bir Karakterdir" kuralı kesinleşir.
+3. Nesne yönelimli programlamada bir üst sınıf referansı veya dizisi, kendisinden
+   türeyen bütün alt sınıf nesnelerini kapsayabilir.
+4. Bu nedenle Karakter[] dizisine hem Karakter hem Savasci hem de Buyucu
+   nesneleri hiçbir tip dönüşümü zorlaması olmadan doğrudan atanabilir.
+
+   
     */

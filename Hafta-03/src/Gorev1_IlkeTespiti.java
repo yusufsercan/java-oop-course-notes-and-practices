@@ -301,5 +301,22 @@ Cevap:
 4. Bu nedenle Karakter[] dizisine hem Karakter hem Savasci hem de Buyucu
    nesneleri hiçbir tip dönüşümü zorlaması olmadan doğrudan atanabilir.
 
-   
+--------------------------------------------------------------------------------
+IV. VİZE SINAVI İÇİN "HAYAT KURARAN" TUZAKLAR VE İPUÇLARI
+--------------------------------------------------------------------------------
+
+1. TUZAK: "Savasabilir s = new Savasabilir();" yazılabilir mi?
+   YANIT: ASLA! Arayüzler (interface) ve soyut sınıflar (abstract class) 'new'
+   ile doğrudan üretilemez. Yalnızca onu uygulayan somut sınıflar üretilebilir.
+
+2. TUZAK: "@Override yazmasak kod çalışır mı?"
+   YANIT: Çalışır; fakat yazım hatası yaparsan (örn: 'tanıt' yerine 'tanitX')
+   derleyici bunu yeni bir metot sanır ve polymorphism bozulur. '@Override'
+   derleyicinin üst metodu gerçekten ezip ezmediğimizi denetlemesini sağlar.
+
+3. TUZAK: "Referans Türü vs. Nesne Türü (Statik vs. Dinamik Tür)":
+   * Karakter k = new Savasci("Ali", 100, 20);
+   * Statik Tür (Derleme Anı) : Karakter  -> Hangi metotların ÇAĞRILABİLECEĞİNİ belirler.
+   * Dinamik Tür (Çalışma Anı): Savasci   -> Metodun HANGİ KODLA ÇALIŞACAĞINI belirler.
+================================================================================
     */

@@ -27,6 +27,19 @@ This repository contains Java code examples, OOP implementations, and laboratory
     
 ---
 
+## 🛠️ Methodology & Study Workflow
+
+The Java source code, domain models, and theoretical notes across this repository originate directly from my university laboratory coursework, lecture materials, and structured technical study sessions.
+
+To maintain high software engineering standards and establish deep conceptual mastery:
+
+* **Core Logic & Hands-on Implementation:** All domain entities, class hierarchies, lab assignment tasks, boundary validations, and driver test suites are designed, coded, and debugged personally during active study and laboratory sessions.
+* **AI-Assisted Architectural Review & Documentation:** AI tooling is utilized as an interactive engineering mentor and editorial companion—used to review code against strict OOP principles (encapsulation levels, invariant enforcement, dynamic dispatch), detect anti-patterns (such as exposed mutable state or inappropriate `static` usage), and format bilingual technical documentation and study guides.
+
+> In essence, AI serves as an architectural reviewer and pair-programming sounding board; the core problem-solving, debugging decisions, architectural evolution, and learning milestones represent my personal academic effort.
+
+---
+
 ## 💻 Development Environment
 
 * **IDE:** Visual Studio Code

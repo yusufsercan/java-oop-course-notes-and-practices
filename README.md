@@ -24,6 +24,13 @@ This repository contains Java code examples, OOP implementations, and laboratory
   - **True Encapsulation & Domain Invariants:** Enforcing business rules alongside data via domain methods (`yatir()`, `cek()`) while restricting arbitrary state modification (`BankaHesabi`).
   - **Abstraction & Contract-First Design:** Decoupling the "what" from the "how" using `abstract class` (`Sekil`) and `interface` (`Odeme`); programming against abstract contracts rather than concrete implementations (`Kasa`).
   - **Inheritance & Dynamic Binding:** Establishing `IS-A` hierarchies with `extends` and `super(...)` constructor chaining; runtime polymorphism, static (declared) vs. dynamic (actual) reference types (`Sekil s = new Daire(...)`), and safe downcasting with `instanceof`.
+
+- **`Hafta-04` : Deep Encapsulation, Immutability & Access Control**
+  - **Mindless Mutators vs. Guarded Invariants:** Moving beyond naive getter/setter pairs; eliminating public fields (`KapsullemeYok`), establishing guarded mutators (`setYas()`) and constructor-enforced invariants (`Ogrenci`).
+  - **Derived Getters & Single Source of Truth:** Eliminating data duplication by calculating derived values dynamically (`getFahrenheit()`, `getKelvin()`) from a single canonical state (`celsius`) without state drift (`Sicaklik`).
+  - **Immutable Value Objects:** Designing thread-safe immutable classes (`ParaBirimi`) via `final class`, `private final` fields, defensive constructor checks, and functional copy-on-write methods (`topla()`, `cikar()`); preventing floating-point inaccuracies using integer cents (`long kurus`).
+  - **Domain Operations vs. Naked Setters:** Restricting arbitrary state modification by replacing raw setter access with encapsulated transactional operations (`yatir()`, `cek()`) enforcing daily limits and overdraft rules (`BankaHesabi`).
+  - **Access Modifiers & Package Visibility:** Demystifying the four accessibility levels (`private`, default/package-private, `protected`, `public`) across modular package boundaries (`okul` vs. `disarida`) and inheritance contexts.
     
 ---
 

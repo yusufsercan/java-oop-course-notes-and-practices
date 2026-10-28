@@ -250,3 +250,73 @@ kurallarına bağlı finansal bir işlemin sonucudur ('yatir()' ve 'cek()' metot
 kullanılır). Bu alanlara 'set' yazmak kapsüllemenin iş kuralı muhafızlığını yıkar."
 ================================================================================
 */
+
+/*
+================================================================================
+NESNE YÖNELİMLİ PROGRAMLAMA - HAFTA 04 DERS NOTLARI
+BÖLÜM 3.0 - 3.5: KAPSÜLLEME, GETTER/SETTER SÖZLEŞMESİ VE TÜRETİLMİŞ KAPILAR
+================================================================================
+
+1. KAPSÜLLEMENİN TEMEL TANIMI VE İKİ BİLEŞENİ
+--------------------------------------------------------------------------------
+* Kapsülleme (Encapsulation): Veriyi dış dünyadan saklayıp, ona erişimi yalnızca 
+  sınıfın kendi denetimli kapılarından sunmaktır.
+* Kapsüllemenin 2 Ayrılmaz Parçası:
+  1. Veriyi gizlemek (alanları 'private' yapmak).
+  2. Veriyi değiştiren kuralı sınıfın içine taşımak (Guarded setter / Domain method).
+  UYARI: Yalnızca 1. adımı yapıp her alana denetimsiz get/set açmak kapsülleme 
+  değildir (Düzey 2 Sahte Kapsülleme).
+
+2. BÖLÜM 3.1: EN KÜÇÜK KAPSÜLLEME VE DOĞRULAMA MERKEZİ
+--------------------------------------------------------------------------------
+* Magic Numbers (Sihirli Sayılar) Yasağı:
+  - Yaş sınırları kodun içine 17 veya 70 olarak gömülmez.
+  - 'public static final int EN_KUCUK_YAS = 17;' sabitleri kullanılır.
+* Yapıcıda Setter Çağırma İlkesi:
+  - Yapıcı içinde 'this.ad = ad;' yazmak yerine 'setAd(ad);' çağrılır.
+  - Amaç: Doğrulama kurallarını iki kez yazmamak (DRY İlkesi) ve nesnenin 
+    doğarken de kurallara uymasını garanti altına almak.
+
+3. BÖLÜM 3.2: GETTER — OKUMA KAPISI
+--------------------------------------------------------------------------------
+* Kapılar çift olmak zorunda DEĞİLDİR.
+* 'getOgrenciNo()' vardır, fakat 'setOgrenciNo()' YOKTUR.
+* Bir değişkene yalnızca getter açmak o alanı "Salt-Okunur (Read-Only)" yapar.
+
+4. BÖLÜM 3.3: SETTER — DENETİMLİ YAZMA KAPISI
+--------------------------------------------------------------------------------
+* Setter bir kapı bekçisidir (Guard Clause).
+* Geçersiz veri geldiğinde iki işlem yapar:
+  1. Hata/ret uyarısı verir.
+  2. 'return;' ile metottan çıkarak atama satırını çalıştırmaz.
+* Kritik Sonuç: Nesne geçersiz duruma düşmez; ESKİ GEÇERLİ DEĞERİNİ KORUR.
+
+5. BÖLÜM 3.4: TÜRETİLMİŞ GETTER (DERIVED GETTER)
+--------------------------------------------------------------------------------
+* Bir getter'ın arkasında bellekte fiziksel bir alan olması şart değildir.
+* 'Ogrenci' sınıfında 'notOrtalamasi' alanı YOKTUR.
+* Ortalama, 'getNotOrtalamasi()' metodu çağrıldığı anda 'notToplami / notAdedi' 
+  şeklinde dinamik hesaplanır.
+* İki Büyük Mühendislik Avantajı:
+  1. Tek Doğruluk Kaynağı (Single Source of Truth): Ortalama ile notlar asla çelişmez.
+  2. Korumasız Atama Engellenir: Dışarıdan kimse kafasına göre ortalama atayamaz.
+* 'notEkle()' Metodu:
+  - Bu bir setter değildir; bir İŞ METODUDUR (Domain Method).
+  - Alan adını değil, gerçekleşen iş olayını modeller (puan sınırı: 0..100).
+
+6. BÖLÜM 3.5: DIŞA AÇIK SÖZLEŞME (TABLO 4.3 ÖZETİ)
+--------------------------------------------------------------------------------
+Alan            | Erişim       | Okuma Kapısı         | Yazma Kapısı
+----------------+--------------+----------------------+-------------------------
+ogrenciNo       | private final| getOgrenciNo()       | YOK (Doğumda mühürlü)
+ad              | private      | getAd()              | setAd() [Boş olamaz]
+yas             | private      | getYas()             | setYas() [17..70 sınır]
+notToplami/Adet | private      | getNotOrtalamasi()   | notEkle() [İş Metodu]
+
+VİZE İPUCU:
+Hoca sınavda "Neden ogrenciNo'nun setter'ı yok, ortalamanın neden alanı yok?" 
+diye sorarsa; "ogrenciNo kimliktir salt-okunurdur, ortalama ise tek doğruluk 
+kaynağı ilkesi gereği türetilmiş bir getter olarak tasarlanmıştır" yanıtı 
+tam puan getirir.
+================================================================================
+*/

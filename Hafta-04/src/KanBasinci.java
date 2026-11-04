@@ -1,4 +1,3 @@
-
 public class KanBasinci
 {
     public static final int EN_DUSUK = 40;

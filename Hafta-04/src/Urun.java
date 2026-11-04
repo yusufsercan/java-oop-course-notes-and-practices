@@ -1,5 +1,4 @@
 
-
 public class Urun
 {
     private final String barkod;

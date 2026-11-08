@@ -26,7 +26,7 @@ public class OgrenciKopya
         this.yas = yas;
 
         // Disaridaki diziden bagimsiz bir kopya olusturur.
-        this.notlar = notlar.clone();
+        this.notlar = notlar.clone();// burada clone() kullanilmazsa disaridaki dizi degistirildiginde ogrencinin notlari da degisebilir. ne işe yarar ? dışarıdan gelen diziyi kopyalar ve kendi içinde saklar. böylece dışarıdaki dizi değişse bile öğrencinin notları değişmez.
     }
 
     // KOPYA CONSTRUCTOR

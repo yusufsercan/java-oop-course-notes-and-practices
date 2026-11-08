@@ -12,18 +12,15 @@ public class OgrenciKopya
             throw new IllegalArgumentException("Ad bos olamaz.");
         }
 
-        if (yas < 0)
-        {
-            throw new IllegalArgumentException("Yas negatif olamaz.");
-        }
+  
 
         if (notlar == null)
         {
             throw new IllegalArgumentException("Not dizisi null olamaz.");
         }
 
-        this.ad = ad.trim();
-        this.yas = yas;
+        this.ad = ad.trim();// boşluklarla iligili trim
+        this.yas=setYas(yas);
 
         // Disaridaki diziden bagimsiz bir kopya olusturur.
         this.notlar = notlar.clone();// burada clone() kullanilmazsa disaridaki dizi degistirildiginde ogrencinin notlari da degisebilir. ne işe yarar ? dışarıdan gelen diziyi kopyalar ve kendi içinde saklar. böylece dışarıdaki dizi değişse bile öğrencinin notları değişmez.
@@ -36,15 +33,15 @@ public class OgrenciKopya
     }
 
     // Gecersiz istekte eski yas korunur.
-    public void setYas(int yas)
+    public int setYas(int yas)
     {
         if (yas < 0)
         {
             System.out.println("RED: Yas negatif olamaz.");
-            return;
+            return 0;
         }
 
-        this.yas = yas;
+        return yas;
     }
 
     public void notDegistir(int index, int yeniNot)

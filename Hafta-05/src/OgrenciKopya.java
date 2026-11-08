@@ -97,6 +97,33 @@ public class OgrenciKopya
     }
 }
 /*
+ * DIZILERDE CLONE() KULLANIMI
+ *
+ * this.notlar = notlar;
+ * -> Yeni dizi olusturmaz.
+ * -> Iki referans ayni diziyi gosterir.
+ * -> Disaridaki degisiklik nesneyi de etkileyebilir.
+ *
+ * this.notlar = notlar.clone();
+ * -> Yeni ve bagimsiz bir int[] dizisi olusturur.
+ * -> Dizinin elemanlarini kopyalar.
+ * -> Disaridaki degisiklik nesnenin notlarini etkilemez.
+ *
+ * final:
+ * Dizi referansinin yeniden atanmasini engeller,
+ * ancak dizi elemanlarinin degismesini engellemez.
+ *
+ * KAZANIM:
+ * Degistirilebilir verileri constructor'a alirken
+ * guvenli kopyalama yaparak kapsullemeyi korumak.
+ *
+ * NOT:
+ * int[] icin clone() yeterlidir.
+ * Nesne dizilerinde elemanlar da degistirilebilir
+ * nesnelerse ek kopyalama gerekebilir.
+ */
+
+/*
  * CONSTRUCTOR VE SETTER DOGRULAMASI
  *
  * Constructor'da gecersiz veri gelirse istisna

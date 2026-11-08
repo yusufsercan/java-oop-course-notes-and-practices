@@ -43,6 +43,7 @@ public class KitapZinciri
         this(isbn, baslik, yazar, sayfaSayisi, 2026);
 
         System.out.println("[4] Dort parametreli constructor tamamlandi.");
+        
     }
 
     // 4. CONSTRUCTOR - Bes parametreli ANA YAPICI
@@ -60,7 +61,7 @@ public class KitapZinciri
         {
             throw new IllegalArgumentException("Baslik bos olamaz.");
         }
-
+    
         if (sayfaSayisi <= 0)
         {
             throw new IllegalArgumentException(
@@ -95,6 +96,7 @@ public class KitapZinciri
         );
     }
 }
+
 
 /*
  * ============================================================
@@ -333,4 +335,7 @@ public class KitapZinciri
  * DOGRULAMA KURALLARI TEK BIR YERDE TUTULABILIR.
  *
  * ============================================================
+ * 
+ * 
+ * 
  */

@@ -106,6 +106,16 @@ public final class KursKaydi
  * ============================================================
  * HAFTA 05 - STATIK FABRIKA METODU
  * ============================================================
+ * 
+ * Asıl kazanımlarımız şunlar:
+1. private constructor: Nesnenin dışarıdan doğrudan oluşturulmasını engeller.
+2. public static fabrika: Henüz nesne yokken sınıf adıyla çağrılır.
+3. return new KursKaydi(...): Yeni nesne oluşturup döndürür.
+4. return BOS: Yeni nesne oluşturmaz, mevcut nesneyi döndürür.
+5. static final BOS: Sınıfa ait, referansı yeniden atanamayan ortak nesnedir.
+6. == operatörü: Nesnelerin bilgilerini değil, aynı nesneyi gösterip göstermediklerini karşılaştırır.
+Bir ayrıntı daha: Geçersiz kayıtta BOS döndürmek bu örnek için seçilmiş bir tasarımdır. Gerçek uygulamada ihtiyaca göre istisna fırlatmak da tercih edilebilir.
+
  *
  * 1. AMAC
  * ------------------------------------------------------------

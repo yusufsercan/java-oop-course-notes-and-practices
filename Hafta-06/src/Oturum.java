@@ -1,19 +1,25 @@
 
-class Oturum {
 
+public class Oturum {
+
+    // Sinifin ortak sayaci
     private static int olusturulan = 0;
 
+    // Sinif baslatilirken bir kez calisir
     static {
         System.out.println("STATIC BLOK");
     }
 
+    // Her nesne icin ayridir
     private String kullanici = "atanmadi";
 
+    // Her yeni nesnede constructor'dan once calisir
     {
         System.out.println("ORNEK BLOK: " + kullanici);
     }
 
     public Oturum(String kullanici) {
+
         this.kullanici = kullanici;
         olusturulan++;
 
@@ -24,20 +30,6 @@ class Oturum {
         return olusturulan;
     }
 }
-
-public class BaslatmaDemo {
-
-    public static void main(String[] args) {
-
-        System.out.println("MAIN BASLADI");
-
-        Oturum a = new Oturum("Ali");
-        Oturum b = new Oturum("Ayse");
-
-        System.out.println("TOPLAM: " + Oturum.toplam());
-    }
-}
-
 /*
  * ============================================================
  * HAFTA 06 - ORNEK 2

@@ -18,9 +18,7 @@ public class EtkinlikBileti {
 
         this.ad = ad;
 
-        this.biletNo = "BLT-" +
-                String.format("%03d", sonrakiNo++);
-
+        this.biletNo = "BLT-" +  String.format("%03d", sonrakiNo++); 
         uretilen++;
     }
 

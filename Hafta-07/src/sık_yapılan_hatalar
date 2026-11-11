@@ -1,0 +1,45 @@
+
+/*
+ * ============================================================
+ * HAFTA 07 - SIK YAPILAN HATALAR
+ * ============================================================
+ *
+ * 1. ALAN GOLGELEME (FIELD HIDING)
+ *
+ * Alt sınıfta üst sınıftaki bir alanla aynı isimde yeni bir alan tanımlarsak üst sınıftaki alan silinmez. Aynı nesnenin üst ve alt sınıf bölümlerinde aynı isimle iki farklı alan bulunabilir.
+ *
+ * Alanlara erişim referansın derleme zamanındaki türüne göre çözülür. Bu nedenle UstSayac türündeki referansla deger alanını okuduğumuzda üst sınıftaki değer alınabilir.
+ *
+ * Buna karşılık ezilmiş örnek metotları çağrılırken gerçek nesnenin türü önemlidir. Bu yüzden aynı nesnede alan erişimi ile metot çağrısı farklı sonuç verebilir.
+ *
+ * ÇÖZÜM: Alt sınıflarda üst sınıftaki alan isimlerini tekrar kullanmamalıyız.
+ *
+ *
+ * 2. OVERRIDING YERINE OVERLOADING
+ *
+ * Üst sınıftaki metodu ezmek istiyorsak metodun adı ve parametre listesi uyumlu olmalıdır.
+ *
+ * Üst sınıfta bicimle(Object), alt sınıfta bicimle(String) yazarsak parametre türleri farklı olduğu için metot ezme gerçekleşmez. Aynı isimde iki farklı metot bulunmuş olur.
+ *
+ * Bu durum beklenmedik sonuçlar üretebilir çünkü derleyici hangi aşırı yüklenmiş metodun çağrılacağını referans ve argüman türlerine göre belirler.
+ *
+ * ÇÖZÜM: Metot ezme niyetiyle yazılan her uygun metoda @Override eklemeliyiz. İmza uyuşmuyorsa derleyici bizi uyarır.
+ *
+ *
+ * 3. CONSTRUCTOR ICINDEN EZILEBILIR METOT CAGIRMA
+ *
+ * Üst sınıfın constructor'ı, alt sınıfın alan başlatıcıları tamamlanmadan çalışır. Eğer üst sınıfın constructor'ı alt sınıfta ezilmiş bir metodu çağırırsa bu metot henüz hazırlanması tamamlanmamış alanlara erişebilir.
+ *
+ * AltRapor örneğinde konu alanı başlangıçta null değerindeyken baslik() çağrıldığı için ilk çıktı Rapor: null olur. Alt sınıfın alanları hazırlandıktan sonra aynı metot doğru değeri üretir.
+ *
+ * ÇÖZÜM: Constructor içinde ezilebilir metot çağırmaktan kaçınmalıyız. Başlangıç için gereken işlemler alt sınıfın değiştiremeyeceği uygun metotlara bırakılmalıdır.
+ *
+ *
+ * 4. HOCANIN VERMEK ISTEDIGI ANA DERS
+ *
+ * Bu üç hata çoğu zaman derleme hatası oluşturmaz. Kod derlenir ve çalışır ancak tasarladığımız davranışı üretmez.
+ *
+ * Bu nedenle miras kullanırken yalnızca sözdizimini bilmek yeterli değildir. Alan erişimini, metot ezme kurallarını ve constructor çalışma sırasını da anlamamız gerekir.
+ *
+ * ============================================================
+ */

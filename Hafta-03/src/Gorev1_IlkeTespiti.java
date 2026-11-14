@@ -32,6 +32,7 @@ public class Gorev1_IlkeTespiti {
             new Karakter("Gezgin", 100),
             new Savasci("Kaan", 120, 25),
             new Buyucu("Elif", 80, 35)
+
         };
         System.out.println("D) tek dongu, uc farkli davranis:");
         for (Karakter x : takim) {
@@ -117,6 +118,23 @@ class Buyucu extends Karakter implements Savasabilir {
 }
 
 /*
+
+NOT
+
+Yuzebilir y = new Balik();
+
+y.yuz();       // Çalışır.
+y.yemekYe();   // Derleme hatası!
+
+
+Yuzebilir → Referansın türü. Hangi metotlara erişebileceğimizi belirler.
+
+new Balik() → Gerçek nesnenin türü. Çağrılan metodun hangi uygulamasının çalışacağını belirler.
+
+
+
+
+
 ================================================================================
 GÖREV 1: İLKE TESPİT TABLOSU (TABLO 3.2)
 ================================================================================

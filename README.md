@@ -1,55 +1,150 @@
-# 🚀 Java & OOP Course Notes & Practices  
 
-This repository contains Java code examples, OOP implementations, and laboratory exercises developed during my university coursework and personal study sessions.
+# Java & Object-Oriented Programming — Course Notes & Practices
 
-> ⚠️ **Note:** The code in this repository documents my ongoin g learning journey in Object-Oriented Programming. The primary goal is to master OOP principles, understand JVM internals, and establish solid software architecture fundamentals.
- 
+A collection of Java programming exercises, laboratory assignments, and study notes developed while studying Object-Oriented Programming as part of my Software Engineering coursework.
+
+This repository documents my progress in understanding Java fundamentals, object-oriented design principles, and practical software development through hands-on exercises.
+
+## Repository Structure
+
+The repository is organized by course week. Each directory contains Java source files, practical examples, and explanations related to the topics covered during that week.
+
+```text
+java-oop-course-notes-and-practices/
+├── Hafta-01/
+│   └── src/
+├── Hafta-02/
+│   └── src/
+├── Hafta-03/
+│   └── src/
+├── Hafta-04/
+│   └── src/
+├── Hafta-05/
+│   └── src/
+├── Hafta-06/
+│   └── src/
+├── Hafta-07/
+│   └── src/
+├── .gitignore
+└── README.md
+```
+
+## Weekly Topics
+
+### Week 01 — Java Fundamentals & OOP Introduction
+
+- Java compilation and execution using `javac`, `java`, and the JVM.
+- Basic class and object definitions, fields, methods, and constructors.
+- Object references, `null`, and differences between primitive and reference types.
+- Introduction to encapsulation and object-oriented programming concepts.
+
+### Week 02 — Constructors & Object Lifecycle
+
+- Constructor overloading and constructor chaining with `this(...)`.
+- Default, parameterized, and copy constructors.
+- Object references versus independent object copies.
+- Field initialization and basic object lifecycle concepts.
+- Encapsulation through private fields, getters, and setters.
+- Object arrays, enhanced `for` loops, and `toString()`.
+
+### Week 03 — The Four Pillars of Object-Oriented Programming
+
+- **Encapsulation:** Protecting object state and enforcing validation through methods.
+- **Abstraction:** Defining common behaviors using interfaces and abstract classes.
+- **Inheritance:** Reusing and extending class functionality with `extends` and `super(...)`.
+- **Polymorphism:** Using parent-class or interface references with different object implementations.
+- Method overriding with `@Override` and dynamic method dispatch.
+- Understanding `implements`, `instanceof`, and type casting.
+- Identifying design problems in procedural and poorly encapsulated code.
+
+### Week 04 — Encapsulation, Immutability & Access Control
+
+- Access modifiers: `public`, `private`, `protected`, and package-private.
+- Package visibility and accessibility across different packages.
+- Constructor validation and controlled state modification.
+- Immutable objects using `final` classes and fields.
+- Domain-specific methods instead of unrestricted setters.
+- Defensive validation and maintaining consistent object state.
+- Practical examples involving bank accounts, temperature, and monetary values.
+
+### Week 05 — Advanced Constructors & Object Initialization
+
+- Constructor chaining and overloaded constructor design.
+- Copy constructors and shallow versus deep copying.
+- Object creation and initialization order.
+- Static factory methods and alternative object creation patterns.
+- Static and instance initialization concepts.
+- Resource management with `AutoCloseable` and try-with-resources.
+
+### Week 06 — Static Members, Final & Initialization Order
+
+- Differences between static and instance fields and methods.
+- Class-level state versus object-specific state.
+- Static initialization blocks and instance initialization blocks.
+- Understanding initialization order during object creation.
+- Constants, `final` fields, and mutable array references.
+- Utility classes and controlled object creation.
+- Introduction to the Singleton design pattern.
+
+### Week 07 — Inheritance, Composition & Polymorphism
+
+- Building class hierarchies using `extends`.
+- Constructor chaining with `super(...)` and initialization order across inheritance levels.
+- Method overriding and runtime polymorphism.
+- Upcasting, downcasting, and `instanceof`.
+- The difference between **IS-A** and **HAS-A** relationships.
+- Composition and delegation as alternatives to inheritance.
+- Common inheritance pitfalls, including field hiding and constructor-related design issues.
+
 ---
 
-### 📁 Repository Structure
+## Study Methodology
 
-- **`Hafta-01` : Foundations & JVM Architecture**
-  - Compilation & execution workflow (`javac`, `java`), `src/` and `bin/` structure.
-  - Structural transition from C to Java: reference mechanics, pointers vs. references, `null` safety.
-  - Paradigms: Procedural approach vs. Class & Object abstractions.
+This repository follows a practice-oriented learning approach based on university lecture materials, laboratory assignments, and additional exercises.
 
-- **`Hafta-02` : Encapsulation & Object Lifecycle**
-  - Data hiding and encapsulation (`private` fields, read-only getters, guarded setters).
-  - Constructor design: Full, short, and copy constructors with constructor chaining (`this(...)`).
-  - JVM memory model: Zero-initialization phase, Heap allocation vs. Stack references.
-  - Object collections: Reference arrays (`Ogrenci[]`), enhanced `for-each` traversal, and formatted representation (`toString()`).
+My study workflow includes:
 
-- **`Hafta-03` : The Four Pillars of OOP & Polymorphic Design**
-  - **Architectural Anti-Patterns:** Transitioning from fragile type-code and repetitive `switch` statements (`SekilKotu`) to extensible class hierarchies; eliminating dead fields and silent runtime calculation failures.
-  - **True Encapsulation & Domain Invariants:** Enforcing business rules alongside data via domain methods (`yatir()`, `cek()`) while restricting arbitrary state modification (`BankaHesabi`).
-  - **Abstraction & Contract-First Design:** Decoupling the "what" from the "how" using `abstract class` (`Sekil`) and `interface` (`Odeme`); programming against abstract contracts rather than concrete implementations (`Kasa`).
-  - **Inheritance & Dynamic Binding:** Establishing `IS-A` hierarchies with `extends` and `super(...)` constructor chaining; runtime polymorphism, static (declared) vs. dynamic (actual) reference types (`Sekil s = new Daire(...)`), and safe downcasting with `instanceof`.
+1. **Theory Review:** Studying the lecture materials and understanding the underlying Java and OOP concepts.
+2. **Code Practice:** Writing, executing, and modifying Java examples to observe their behavior.
+3. **Debugging & Analysis:** Investigating compilation errors, unexpected outputs, and object behavior.
+4. **Documentation:** Adding detailed Turkish explanations to source files, covering execution flow, important concepts, and common mistakes.
+5. **Knowledge Reinforcement:** Practicing output prediction, code tracing, error analysis, and short programming exercises.
 
-- **`Hafta-04` : Deep Encapsulation, Immutability & Access Control**
-  - **Mindless Mutators vs. Guarded Invariants:** Moving beyond naive getter/setter pairs; eliminating public fields (`KapsullemeYok`), establishing guarded mutators (`setYas()`) and constructor-enforced invariants (`Ogrenci`).
-  - **Derived Getters & Single Source of Truth:** Eliminating data duplication by calculating derived values dynamically (`getFahrenheit()`, `getKelvin()`) from a single canonical state (`celsius`) without state drift (`Sicaklik`).
-  - **Immutable Value Objects:** Designing thread-safe immutable classes (`ParaBirimi`) via `final class`, `private final` fields, defensive constructor checks, and functional copy-on-write methods (`topla()`, `cikar()`); preventing floating-point inaccuracies using integer cents (`long kurus`).
-  - **Domain Operations vs. Naked Setters:** Restricting arbitrary state modification by replacing raw setter access with encapsulated transactional operations (`yatir()`, `cek()`) enforcing daily limits and overdraft rules (`BankaHesabi`).
-  - **Access Modifiers & Package Visibility:** Demystifying the four accessibility levels (`private`, default/package-private, `protected`, `public`) across modular package boundaries (`okul` vs. `disarida`) and inheritance contexts.
-    
+AI-assisted explanations and code reviews are used as supplementary learning resources to clarify concepts, examine alternative implementations, and improve documentation.
+
+The repository is maintained as an educational record of my coursework and ongoing learning rather than a production software project.
+
+## Development Environment
+
+| Tool | Usage |
+|---|---|
+| Java / OpenJDK 21 | Programming language and development kit |
+| Visual Studio Code | Code editor and Java development environment |
+| Java Compiler (`javac`) | Compiling Java source code |
+| Java Virtual Machine (JVM) | Running compiled Java programs |
+| Git & GitHub | Version control and progress tracking |
+
+## Working with the Examples
+
+Each `Hafta-XX` directory is intended to be studied independently.
+
+Some weekly exercises use similar class names or different package structures. For this reason, opening and running one week's folder at a time in Visual Studio Code is recommended.
+
+The source files contain examples, demonstrations, and exercises designed to reinforce individual concepts.
+
+## Learning Objectives
+
+Through this repository, I aim to:
+
+- Develop a strong understanding of Java and object-oriented programming.
+- Write maintainable code using encapsulation, abstraction, inheritance, and polymorphism.
+- Understand object creation, references, memory behavior, and initialization.
+- Improve debugging, code-reading, and problem-solving skills.
+- Build a foundation for more advanced software engineering and secure programming practices.
+
 ---
 
-## 🛠️ Methodology & Study Workflow
+**Status:** Ongoing academic learning and practice.
 
-The Java source code, domain models, and theoretical notes across this repository originate directly from my university laboratory coursework, lecture materials, and structured technical study sessions.
+**Focus:** Java • Object-Oriented Programming • Software Design • Problem Solving
 
-To maintain high software engineering standards and establish deep conceptual mastery:
-
-* **Core Logic & Hands-on Implementation:** All domain entities, class hierarchies, lab assignment tasks, boundary validations, and driver test suites are designed, coded, and debugged personally during active study and laboratory sessions.
-* **AI-Assisted Architectural Review & Documentation:** AI tooling is utilized as an interactive engineering mentor and editorial companion—used to review code against strict OOP principles (encapsulation levels, invariant enforcement, dynamic dispatch), detect anti-patterns (such as exposed mutable state or inappropriate `static` usage), and format bilingual technical documentation and study guides.
-
-> In essence, AI serves as an architectural reviewer and pair-programming sounding board; the core problem-solving, debugging decisions, architectural evolution, and learning milestones represent my personal academic effort.
-
----
-
-## 💻 Development Environment
-
-* **IDE:** Visual Studio Code
-* **JDK Version:** OpenJDK 21
-* **Build / Runtime:** javac / JVM
-* **Version Control:** Git & GitHub
